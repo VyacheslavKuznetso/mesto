@@ -1,5 +1,4 @@
 .profile-info__First-Name-Last-Name {
-    margin: 0;
     display: flex;
     justify-content: flex-start;
     flex-wrap: nowrap;
