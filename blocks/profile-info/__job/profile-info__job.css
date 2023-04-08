@@ -1,0 +1,10 @@
+.profile-info__job {
+    max-width: 336px;
+    margin: 16px 0 0;
+}
+
+@media screen and (max-width: 730px) {
+    .profile-info__job {
+        text-align-last: center;
+    }
+}

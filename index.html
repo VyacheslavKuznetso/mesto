@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Места России</title>
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="images/Logo.svg" alt="Места в России">
+    </header>
+    <nav class="content">
+        <div class="profile">
+            <img class="profile__avatar" src="images/image-3.png" alt="Жак-Ив Кусто">
+            <div class="profile-info">
+                <div class="profile-info__First-Name-Last-Name">
+                    <h1 class="profile-info__UserName" id="currentUserName">Жак-Ив Кусто</h1>
+                    <button class="profile-info__edit-Button" id="editUser"></button>
+                </div>
+                <div class="profile-info__job">
+                    <h2 class="profile-info__specially" id="specially">Исследователь океана</h2>
+                </div>
+            </div>
+        </div>
+        <button class="addButton" id="addContentButton">
+            <img class="addButton__image" src="images/Vector-3.png" />
+        </button>
+    </nav> 
+    <main class="elements">
+        <div class="element">
+            <img class="element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Церковь">
+            <div class="signature">
+                <div class="footer-image">
+                    <h1 class="footer-image__text-photo">Карачаевск</h1>
+                    <button class="footer-image__element-like" id="like-1"></button>
+                </div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png" alt="Гора">
+            <div class="signature">
+                <div class="footer-image">
+                    <h1 class="footer-image__text-photo">Домбай</h1>
+                    <button class="footer-image__element-like" id="like-2"></button>  
+                </div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="images/kirill-pershin-1404681-unsplash.png" alt="">
+            <div class="signature">
+                <div class="footer-image">
+                    <h1 class="footer-image__text-photo">Гора Эльбрус</h1>
+                    <button class="footer-image__element-like" id="like-3"></button>
+                </div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="images/kirill-pershin-1404681-unsplash.png" alt="">
+            <div class="signature">
+                <div class="footer-image">
+                    <h1 class="footer-image__text-photo">Гора Эльбрус</h1>
+                    <button class="footer-image__element-like" id="like-4"></button>
+                </div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png" alt="Гора">
+            <div class="signature">
+                <div class="footer-image">
+                    <h1 class="footer-image__text-photo">Домбай</h1>
+                    <button class="footer-image__element-like" id="like-5"></button>
+                </div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Церковь">
+            <div class="signature">
+                <div class="footer-image">
+                    <h1 class="footer-image__text-photo">Карачаево-Черкесская</h1>
+                    <button class="footer-image__element-like" id="like-6"></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy;2023.&nbsp;Вячеслав&nbsp;Кузнецов</p>
+    </footer>
+
+    <div class="form-wrapper" id="formWrapper">
+        <div class="form">
+            <button class="close" id="closeForm">
+                <img class="close__icon" src="images/Close-Icon.png" alt="Х">
+            </button>
+            <form class="form__info" id="userInfo" name="userInfo">
+                <h1 class="form__title">Редактировать профиль</h1>
+                <input class="form__name" type="text" name="userName" value="" />
+                <input class="form__role" type="text" name="userRole" value="" />
+                <button class="form__submit-Button" type="submit">
+                    <span class="form__submit-Button-save">Сохранить</span> 
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+<script src="script.js"></script>
+</html>

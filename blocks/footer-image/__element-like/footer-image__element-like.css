@@ -1,0 +1,20 @@
+.footer-image__element-like {
+    width: 22px;
+    height: 19px;
+    background: transparent;
+    background-image: url(../../../images/Vector-2.png);
+    outline: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+    align-self: center;
+    border: none;
+    cursor: pointer;
+}
+
+.footer-image__element-like:hover {
+    opacity: 0.8;
+}
+
+.like {
+    background-image: url(../../../images/Union.png);
+}

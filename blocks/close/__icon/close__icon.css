@@ -1,0 +1,12 @@
+.close__icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 460px) {
+    .close__icon {
+        width: 20px;
+        height: 20px;
+    }
+}

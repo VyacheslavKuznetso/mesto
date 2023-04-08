@@ -1,0 +1,6 @@
+.footer-image {
+    width: 87.5%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter';
+}

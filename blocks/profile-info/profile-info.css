@@ -1,0 +1,20 @@
+.profile-info {
+    max-width: 68%;
+    margin-left: 30px;
+    font-family: 'Inter';
+}
+
+@media screen and (max-width: 730px) {
+    .profile-info {
+        margin: 0;
+        max-width: 80%;
+        
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .profile-info {
+        max-width: 100%;
+        
+    }
+}

@@ -1,0 +1,60 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+
+@import url(../blocks/page/page.css);
+
+
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+
+@import url(../blocks/content/content.css);
+
+
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+
+
+@import url(../blocks/profile-info/profile-info.css);
+@import url(../blocks/profile-info/__First-Name-Last-Name/profile-info__First-Name-Last-Name.css);
+@import url(../blocks/profile-info/__UserName/profile-info__UserName.css);
+@import url(../blocks/profile-info/__edit-Button/profile-info__edit-Button.css);
+@import url(../blocks/profile-info/__job/profile-info__job.css);
+@import url(../blocks/profile-info/__specially/profile-info__specially.css);
+
+
+@import url(../blocks/addButton/addButton.css);
+@import url(../blocks/addButton/__image/addButton__image.css);
+
+
+@import url(../blocks/elements/elements.css);
+
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+
+@import url(../blocks/signature/signature.css);
+
+
+@import url(../blocks/footer-image/footer-image.css);
+@import url(../blocks/footer-image/__text-photo/footer-image__text-photo.css);
+@import url(../blocks/footer-image/__element-like/footer-image__element-like.css);
+
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+
+
+@import url(../blocks/form-wrapper/form-wrapper.css);
+
+
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__info/form__info.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__name/form__name.css);
+@import url(../blocks/form/__role/form__role.css);
+@import url(../blocks/form/__submit-Button/form__submit-Button.css);
+@import url(../blocks/form/submit-Button-save/form__submit-Button-save.css);
+
+
+@import url(../blocks/close/close.css);
+@import url(../blocks/close/__icon/close__icon.css);

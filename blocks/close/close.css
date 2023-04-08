@@ -1,0 +1,18 @@
+.close {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    top: -38px;
+    right: -38px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 680px) {
+    .close {
+        top: -50px;
+        right: -2px;
+    }
+}

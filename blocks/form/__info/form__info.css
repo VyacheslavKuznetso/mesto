@@ -1,0 +1,5 @@
+.form__info {
+    display: flex;
+    flex-direction: column;
+    width: 83.25%;
+}
