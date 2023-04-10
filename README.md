@@ -1,17 +1,7 @@
 # Проект: Место
+ * [mesto](https://vyacheslavkuznetso.github.io/mesto/):
+Интерактивная веб-страница, позволяющая пользователю редактировать профиль и аватар.
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0-1&t=jJktpJEhHqcdYBjW-0)
+* В данном проекте било впервые используется: Разметка и верстка форм, взаимодействие с веб-страницей благодаря Document Object Model под воздействием JavaScript,  техника Desktop First.
 
-### Обзор
-
-* Figma
-* Картинки
-
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+<img src="images/Снимок экрана 2023-04-10 в 09.38.13.png" width="100%"> 
