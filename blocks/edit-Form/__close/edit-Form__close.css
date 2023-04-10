@@ -1,4 +1,4 @@
-.edit-Form__close {
+.edit-form__close {
     width: 32px;
     height: 32px;
     background-image: url(../../../images/Close-Icon.svg);
@@ -13,12 +13,12 @@
     cursor: pointer;
 }
 
-.edit-Form__close:hover {
+.edit-form__close:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width: 680px) {
-    .edit-Form__close {
+    .edit-form__close {
         width: 20px;
         height: 20px;
         top: -35px;

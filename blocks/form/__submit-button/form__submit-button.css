@@ -1,5 +1,5 @@
-.form__submitButton {
-    width: 83.25%;
+.form__submit-button {
+    width: 358px;
     padding: 0;
     align-self: center;
     min-height: 50px;
@@ -15,15 +15,16 @@
     color: #FFFFFF;
 }
 
-.form__submitButton:hover {
+.form__submit-button:hover {
     opacity: 0.8;
 }
 
 
 @media screen and (max-width: 425px) {
-    .form__submitButton {
+    .form__submit-button {
         font-size: 14px;
         line-height: 17px;
-        width: 100%;
+        width: 238px;
+        min-height: 48px;
     }
 }

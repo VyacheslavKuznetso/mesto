@@ -1,6 +1,5 @@
 .form {
     display: flex;
     flex-direction: column;
-    width: 83.25%;
     font-family: 'Inter', sans-serif;
 }

@@ -1,6 +1,7 @@
-let popup = document.querySelector('.edit-Form');
-let editButton = document.querySelector('.profile__editButton');
-let closeFormButton = document.querySelector('.edit-Form__close');
+let popup = document.querySelector('.edit-form');
+let form = document.querySelector('.form')
+let editButton = document.querySelector('.profile__edit-button');
+let closeFormButton = document.querySelector('.edit-form__close');
 let nameInput = document.querySelector('.form__input_text_name');
 let roleInput = document.querySelector('.form__input_text_role');
 let elementSignature = document.querySelector('.element__signature');
@@ -9,7 +10,7 @@ let currentUserName = document.querySelector('.profile__title');
 let specially = document.querySelector('.profile__subtitle');
 
 function openModal () {
-    popup.classList.add('edit-Form__overlay_display_including');
+    popup.classList.add('edit-form_overlay');
 
     nameInput.value = currentUserName.innerHTML;
     roleInput.value = specially.innerHTML;
@@ -26,7 +27,7 @@ function formSubmitHandler (evt) {
 }
 
 function closeModal () {
-    popup.classList.remove('edit-Form__overlay_display_including');
+    popup.classList.remove('edit-form_overlay');
 }
 
 
@@ -35,4 +36,4 @@ closeFormButton.addEventListener('click', closeModal);
 
 editButton.addEventListener('click', openModal);
 
-popup.addEventListener('submit', formSubmitHandler);
+form.addEventListener('submit', formSubmitHandler);

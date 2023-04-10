@@ -1,5 +1,5 @@
-.edit-Form {
-    font-family: 'Inter', 'Regular', 'Medium';
+.edit-form {
+    font-family: 'Inter', sans-serif;
     display: none;
     justify-content: center;
     align-items: center;
@@ -12,6 +12,6 @@
     z-index: 1;
 }
 
-.edit-Form__overlay_display_including {
+.edit-form_overlay {
     display: flex;
 }

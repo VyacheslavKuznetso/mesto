@@ -1,7 +1,7 @@
 .profile__info-block {
     max-width: 336px;
     margin-left: 30px;
-    font-family: 'Inter', 'Regular', 'Medium';
+    font-family: 'Inter', sans-serif;
 }
 
 @media screen and (max-width: 730px) {
