@@ -4,7 +4,7 @@
     flex-direction: column;
     border-radius: 3%;
     overflow: hidden;
-    font-family: 'Inter', 'Regular', 'Medium';
+    font-family: 'Inter', sans-serif;
 }
 
 @media screen and (max-width: 1250px) {

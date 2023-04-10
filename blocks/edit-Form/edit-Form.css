@@ -1,6 +1,8 @@
 .edit-Form {
     font-family: 'Inter', 'Regular', 'Medium';
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -10,8 +12,6 @@
     z-index: 1;
 }
 
-.overlay {
+.edit-Form__overlay_display_including {
     display: flex;
-    justify-content: center;
-    align-items: center;
 }

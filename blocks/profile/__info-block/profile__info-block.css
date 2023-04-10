@@ -1,18 +1,18 @@
-.profile-info {
+.profile__info-block {
     max-width: 336px;
     margin-left: 30px;
     font-family: 'Inter', 'Regular', 'Medium';
 }
 
 @media screen and (max-width: 730px) {
-    .profile-info {
+    .profile__info-block {
         margin: 0;
         
     }
 }
 
 @media screen and (max-width: 470px) {
-    .profile-info {
+    .profile__info-block {
         max-width: 100%;
         
     }

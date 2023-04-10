@@ -12,62 +12,62 @@
         <img class="header__logo" src="images/Logo.svg" alt="Места в России">
     </header>
     <main class="content">
-        <section class="avatar">
+        <section class="block-profile">
             <div class="profile">
                 <img class="profile__avatar" src="images/image-3.png" alt="Жак-Ив Кусто">
-                <div class="profile-info">
-                    <div class="profile-info__data">
-                        <h1 class="profile-info__UserName">Жак-Ив Кусто</h1>
-                        <button class="profile-info__edit-Button" aria-label="Редактировать" id="editUser"></button>
+                <div class="profile__info-block">
+                    <div class="profile__data">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__editButton" type="button" aria-label="Редактировать" id="editUser"></button>
                     </div>
-                    <p class="profile-info__specially" id="specially">Исследователь океана</p>
+                    <p class="profile__subtitle" id="specially">Исследователь океана</p>
                 </div>
             </div>
             <button class="addButton" aria-label="Добывить" id="addContentButton"></button>
         </section> 
         <section class="elements">
-            <div class="element">
+            <article class="element">
                 <img class="element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Церковь">
                 <div class="element__signature">
                     <h2 class="element__text-photo">Карачаевск</h2>
-                    <button class="element__like" id="like-1"></button>
+                    <button class="element__like" type="button"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png" alt="Гора">
                 <div class="element__signature">
                     <h2 class="element__text-photo">Домбай</h2>
-                    <button class="element__like" id="like-2"></button>
+                    <button class="element__like" type="button"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img class="element__image" src="images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
                 <div class="element__signature">
                     <h2 class="element__text-photo">Гора Эльбрус</h2>
-                    <button class="element__like" id="like-3"></button>
+                    <button class="element__like" type="button"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img class="element__image" src="images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
                 <div class="element__signature">
                     <h2 class="element__text-photo">Гора Эльбрус</h2>
-                    <button class="element__like" id="like-4"></button>
+                    <button class="element__like" type="button"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png" alt="Гора">
                 <div class="element__signature">
                     <h2 class="element__text-photo">Домбай</h2>
-                    <button class="element__like" id="like-5"></button>
+                    <button class="element__like" type="button"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img class="element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Церковь">
                 <div class="element__signature">
                     <h2 class="element__text-photo">Карачаево-Черкесская</h2>
-                    <button class="element__like" id="like-6"></button>
+                    <button class="element__like" type="button"></button>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
     <footer class="footer">
@@ -75,17 +75,15 @@
     </footer>
     <div class="edit-Form" id="edit-Form">
         <div class="edit-Form__conteiner">
-            <button class="edit-Form__close" id="closeForm"></button>
+            <button class="edit-Form__close" type="button" id="closeForm"></button>
             <form class="form" id="userInfo" name="userInfo">
                 <h2 class="form__title">Редактировать профиль</h2>
-                <input class="form__input form__input_text-name" required placeholder="Name" type="text" name="userName" value="" />
-                <input class="form__input form__input_text-role" required placeholder="job" type="text" name="userRole" value="" />
-                <button class="form__submit-Button" type="submit">
-                    <h3 class="form__submit-Button-save">Сохранить</h3> 
-                </button>
+                <input class="form__input form__input_text_name" required placeholder="Name" type="text" name="userName" value="" />
+                <input class="form__input form__input_text_role" required placeholder="job" type="text" name="userRole" value="" />
+                <button class="form__submitButton" type="submit" value="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

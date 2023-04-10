@@ -1,4 +1,4 @@
-.profile-info__data {
+.profile__data {
     display: flex;
     justify-content: flex-start;
     flex-wrap: nowrap;
@@ -7,7 +7,7 @@
 
 
 @media screen and (max-width: 730px) {
-    .profile-info__data {
+    .profile__data {
         justify-content: center;
     }
 }

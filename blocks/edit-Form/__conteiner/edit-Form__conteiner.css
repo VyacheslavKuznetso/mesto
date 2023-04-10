@@ -1,6 +1,6 @@
 .edit-Form__conteiner {
     width: 430px;
-    font-family: 'Inter', 'Regular', 'Medium';
+    font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,6 +31,6 @@
 @media screen and (max-width: 476px) {
     .edit-Form__conteiner {
         max-width: 90%;
-        padding: 35px 0;
+        padding: 25px 0;
     }
 }
