@@ -7,8 +7,8 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
-
 @import url(../blocks/content/content.css);
+@import url(../blocks/avatar/avatar.css);
 
 
 @import url(../blocks/profile/profile.css);
@@ -16,45 +16,39 @@
 
 
 @import url(../blocks/profile-info/profile-info.css);
-@import url(../blocks/profile-info/__First-Name-Last-Name/profile-info__First-Name-Last-Name.css);
+@import url(../blocks/profile-info/__data/profile-info__data.css);
 @import url(../blocks/profile-info/__UserName/profile-info__UserName.css);
 @import url(../blocks/profile-info/__edit-Button/profile-info__edit-Button.css);
-@import url(../blocks/profile-info/__job/profile-info__job.css);
 @import url(../blocks/profile-info/__specially/profile-info__specially.css);
 
 
 @import url(../blocks/addButton/addButton.css);
-@import url(../blocks/addButton/__image/addButton__image.css);
 
 
 @import url(../blocks/elements/elements.css);
 
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
-
-@import url(../blocks/signature/signature.css);
-
-
-@import url(../blocks/footer-image/footer-image.css);
-@import url(../blocks/footer-image/__text-photo/footer-image__text-photo.css);
-@import url(../blocks/footer-image/__element-like/footer-image__element-like.css);
+@import url(../blocks/element/__signature/element__signature.css);
+@import url(../blocks/element/__text-photo/element__text-photo.css);
+@import url(../blocks/element/__like/element__like.css);
 
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 
-@import url(../blocks/form-wrapper/form-wrapper.css);
+@import url(../blocks/edit-Form/edit-Form.css);
 
+@import url(../blocks/edit-Form/__conteiner/edit-Form__conteiner.css);
+@import url(../blocks/edit-Form/__conteiner/__close/conteiner__close.css);
 
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__info/form__info.css);
 @import url(../blocks/form/__title/form__title.css);
-@import url(../blocks/form/__name/form__name.css);
-@import url(../blocks/form/__role/form__role.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_text-name/form__input_text-name.css);
+@import url(../blocks/form/__input/_text-role/form__input_text-role.css);
 @import url(../blocks/form/__submit-Button/form__submit-Button.css);
 @import url(../blocks/form/submit-Button-save/form__submit-Button-save.css);
 
 
-@import url(../blocks/close/close.css);
-@import url(../blocks/close/__icon/close__icon.css);

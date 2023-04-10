@@ -1,0 +1,36 @@
+.edit-Form__conteiner {
+    width: 430px;
+    font-family: 'Inter', 'Regular', 'Medium';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
+    padding: 34px 0 37px 0;
+    z-index: 2;
+}
+
+
+
+@media screen and (max-width: 770px) {
+    .edit-Form__conteiner {
+        max-width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 542px) {
+    .edit-Form__conteiner {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 476px) {
+    .edit-Form__conteiner {
+        max-width: 90%;
+        padding: 35px 0;
+    }
+}

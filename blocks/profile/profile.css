@@ -1,9 +1,14 @@
 .profile {
     display: flex;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Regular', 'Medium';
 }
 
 
+@media screen and (max-width: 950px) {
+    .profile {
+        max-width: 100%;
+    }
+}
 
 @media screen and (max-width: 730px) {
     .profile {

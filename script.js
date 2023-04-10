@@ -1,58 +1,38 @@
-let formElement = document.querySelector('#formWrapper')
-let profileInfo = document.querySelector('.profile-info')
-let editButton = document.querySelector('#editUser')
-let closeFormButton = document.querySelector('#closeForm')
-let nameInput = document.querySelector('.form__name');
-let roleInput = document.querySelector('.form__role');
-let likeButton = document.querySelector('.footer-image__element-like');
+let formElement = document.querySelector('.edit-Form');
+let editButton = document.querySelector('.profile-info__edit-Button');
+let closeFormButton = document.querySelector('.conteiner__close');
+let nameInput = document.querySelector('.form__input_text-name');
+let roleInput = document.querySelector('.form__input_text-role');
+let elementSignature = document.querySelector('.element__signature');
+let likeButton = elementSignature.querySelector('.element__like');
+let currentUserName = document.querySelector('.profile-info__UserName');
+let specially = document.querySelector('.profile-info__specially');
 
-function oneClick () {
+function showForm () {
+    let active = formElement.classList.add('overlay');
 
-    let active = formElement.classList.add('active');
-
-    let currentUserName = document.querySelector('#currentUserName');
-    
-    let specially = document.querySelector('#specially');
-
-    const inputName = document.querySelector('input[name="userName"]');
-
-    const inputRole = document.querySelector('input[name="userRole"]');
-
-    inputName.value = currentUserName.innerHTML;
-    inputRole.value = specially.innerHTML;
-
-
+    nameInput.value = currentUserName.innerHTML;
+    roleInput.value = specially.innerHTML;
 }
-
-editButton.addEventListener('click', oneClick);
-
 
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-    
-    let currentUserName = document.querySelector('#currentUserName');
-    
-    let specially = document.querySelector('#specially');
 
-    const inputName = document.querySelector('input[name="userName"]');
-
-    const inputRole = document.querySelector('input[name="userRole"]');
-
-    currentUserName.innerHTML = inputName.value
-    specially.innerHTML = inputRole.value
-
- 
+    currentUserName.innerHTML = nameInput.value;
+    specially.innerHTML = roleInput.value;
 
     closeFormCleck();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
-
-
 function closeFormCleck () {
-    let noActive = formElement.classList.remove('active');
+    formElement.classList.remove('overlay');
 }
+
+
 
 closeFormButton.addEventListener('click', closeFormCleck);
 
+editButton.addEventListener('click', showForm);
+
+formElement.addEventListener('submit', formSubmitHandler);

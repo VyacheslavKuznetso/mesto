@@ -1,4 +1,4 @@
-.profile-info__First-Name-Last-Name {
+.profile-info__data {
     display: flex;
     justify-content: flex-start;
     flex-wrap: nowrap;
@@ -7,7 +7,7 @@
 
 
 @media screen and (max-width: 730px) {
-    .profile-info__First-Name-Last-Name {
+    .profile-info__data {
         justify-content: center;
     }
 }

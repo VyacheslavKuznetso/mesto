@@ -1,19 +1,10 @@
 .content {
-    width: 68.75%;
-    margin-top: 40px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    font-family: 'Inter';
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', 'Regular', 'Medium';
 }
 
-@media screen and (max-width: 950px) {
-    .content {
-        flex-direction: column;
-    }
-}
 
-@media screen and (max-width: 680px) {
-    .content {
-        width: 90%;
-    }
-}
+

@@ -1,19 +1,7 @@
 .profile__avatar {
-    max-width: 25%;
+    width: 120px;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
     border-radius: 50%;
 }
 
-@media screen and(max-width: 730px) {
-    .profile__avatar {
-        max-width: 26.4%;
-        align-self: center;
-    }
-}
-
-
-@media screen and (max-width: 680px) {
-    .profile__avatar {
-        min-width: 37.5%;
-    }
-}

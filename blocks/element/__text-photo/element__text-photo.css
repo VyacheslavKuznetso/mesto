@@ -1,5 +1,6 @@
-.footer-image__text-photo {
+.element__text-photo {
     max-width: 75%;
+    margin-left: 15px;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
