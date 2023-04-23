@@ -1,5 +1,6 @@
-.edit-form_overlay {
+.add-form_overlay {
     visibility: visible;
     pointer-events: all;
     opacity: 1;
 }
+

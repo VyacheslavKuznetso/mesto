@@ -4,6 +4,7 @@
     flex-direction: column;
     border-radius: 3%;
     overflow: hidden;
+    position: relative;
     font-family: 'Inter', sans-serif;
 }
 
