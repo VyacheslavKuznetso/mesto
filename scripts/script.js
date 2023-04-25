@@ -1,9 +1,9 @@
 const popupEditForm = document.querySelector('.edit-form');
 const editButton = document.querySelector('.profile__edit-button');
 const popupClose = document.querySelectorAll('.popup__close');
-const editFormClose = document.querySelector('.edit-form_close');
-const addFormClose = document.querySelector('.add-form_close');
-const windowImgClose = document.querySelector('.window-img_close')
+const editFormClose = document.querySelector('.popup__close_edit-form');
+const addFormClose = document.querySelector('.popup__close_add-form');
+const windowImgClose = document.querySelector('.popup__close_window-img')
 const popupFormSubmitButton = document.querySelectorAll('.popup__form-submit-button');
 
 const popupForm = document.querySelector('.popup__form');
@@ -25,7 +25,7 @@ const popupOverlay = document.querySelector('.popup_overlay');
 const blockProfileAddButton = document.querySelector('.block-profile__add-button');
 
 const popupFormInputTextImg = document.querySelector('.popup__form-input_text_img');
-const popupformInputSrcImg = document.querySelector('.popupform-input_src_img');
+const popupformInputSrcImg = document.querySelector('.popup__form-input_src_img');
 
 const userTemplate = document.querySelector('#element').content;
 const elements = document.querySelector('.elements');
