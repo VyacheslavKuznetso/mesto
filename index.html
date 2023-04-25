@@ -23,7 +23,7 @@
                     <p class="profile__subtitle" id="specially">Исследователь океана</p>
                 </div>
             </div>
-            <button class="add-button" type="button" aria-label="Добывить" id="addContentButton"></button>
+            <button class="block-profile__add-button" type="button" aria-label="Добывить" id="addContentButton"></button>
         </section> 
         <section class="elements">
             <template id="element">
@@ -36,86 +36,38 @@
                     <button class="element__delete-button" type="button"></button>
                 </article>
             </template>
-            <article class="element">
-                <img class="element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Церковь" />
-                <div class="element__signature">
-                    <h2 class="element__text-photo">Карачаевск</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-                <button class="element__delete-button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png" alt="Гора" />
-                <div class="element__signature">
-                    <h2 class="element__text-photo">Домбай</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-                <button class="element__delete-button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" />
-                <div class="element__signature">
-                    <h2 class="element__text-photo">Гора Эльбрус</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-                <button class="element__delete-button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" />
-                <div class="element__signature">
-                    <h2 class="element__text-photo">Гора Эльбрус</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-                <button class="element__delete-button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png" alt="Гора" />
-                <div class="element__signature">
-                    <h2 class="element__text-photo">Домбай</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-                <button class="element__delete-button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Церковь" />
-                <div class="element__signature">
-                    <h2 class="element__text-photo">Карачаево-Черкесская</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-                <button class="element__delete-button" type="button"></button>
-            </article>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy;2023.&nbsp;Вячеслав&nbsp;Кузнецов</p>
     </footer>
-    <div class="edit-form" id="edit-Form">
-        <div class="edit-form__conteiner">
-            <button class="edit-form__close" type="button" id="closeForm"></button>
-            <form class="form" id="userInfo" name="userInfo">
-                <h2 class="form__title">Редактировать профиль</h2>
-                <input class="form__input form__input_text_name" required placeholder="Name" type="text" name="userName" value="" />
-                <input class="form__input form__input_text_role" required placeholder="job" type="text" name="userRole" value="" />
-                <button class="form__submit-button" type="submit" value="Сохранить">Сохранить</button>
+    <div class="popup edit-form" id="edit-Form">
+        <div class="popup__conteiner">
+            <button class="popup__close edit-form_close" type="button" id="closeForm"></button>
+            <form class="popup__form" id="userInfo" name="userInfo">
+                <h2 class="popup__form-title">Редактировать профиль</h2>
+                <input class="popup__form-input popup__form-input_text_name" required placeholder="Name" type="text" name="userName" value="" />
+                <input class="popup__form-input popup__form-input_text_role" required placeholder="job" type="text" name="userRole" value="" />
+                <button class="popup__form-submit-button" type="submit" value="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
-    <div class="add-form" id="add-Form">
-        <div class="add-form__conteiner">
-            <button class="add-form__close" type="button" id="addcloseForm"></button>
-            <form class="form" id="userImg" name="userImg">
-                <h2 class="form__title">Новое место</h2>
-                <input class="form__input form__input_text_imd" required placeholder="Название" type="text" name="commentImg" value="" />
-                <input class="form__input form__input_src_img" required placeholder="Ссылка на картинку" type="text" name="linkImg" value="" />
-                <button class="form__submit-button" type="submit" value="Сохранить">Сохранить</button>
+    <div class="popup add-form" id="add-Form">
+        <div class="popup__conteiner">
+            <button class="popup__close add-form_close" type="button" id="addcloseForm"></button>
+            <form class="popup__form" id="userImg" name="userImg">
+                <h2 class="popup__form-title">Новое место</h2>
+                <input class="popup__form-input popup__form-input_text_img" required placeholder="Название" type="text" name="commentImg" value="" />
+                <input class="popup__form-input popupform-input_src_img" required placeholder="Ссылка на картинку" type="text" name="linkImg" value="" />
+                <button class="popup__form-submit-button" type="submit" value="Создать">Создать</button>
             </form>
         </div>
     </div>
-    <div class="window-img" >
-        <div class="window-img__conteiner">
-            <button class="window-img__close" type="button"></button>
-            <img class="window-img__picture"    />
-            <h2 class="window-img__text"></h2>
+    <div class="popup window-img" >
+        <div class="popup__img-conteiner">
+            <button class="popup__close window-img_close" type="button"></button>
+            <img class="popup__picture"    />
+            <h2 class="popup__text"></h2>
         </div>
     </div>
     <script src="./scripts/script.js"></script>

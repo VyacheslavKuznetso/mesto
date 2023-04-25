@@ -1,4 +1,4 @@
-.edit-form__conteiner {
+.popup__conteiner {
     width: 430px;
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -16,20 +16,20 @@
 
 
 @media screen and (max-width: 770px) {
-    .edit-form__conteiner {
+    .popup__conteiner {
         max-width: 70%;
     }
 }
 
 
 @media screen and (max-width: 542px) {
-    .edit-form__conteiner {
+    .popup__conteiner {
         max-width: 80%;
     }
 }
 
 @media screen and (max-width: 476px) {
-    .edit-form__conteiner {
+    .popup__conteiner {
         max-width: 90%;
         padding: 25px 0;
     }

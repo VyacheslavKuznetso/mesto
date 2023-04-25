@@ -1,65 +1,186 @@
-let popup = document.querySelector('.edit-form');
-let form = document.querySelector('.form');
-let editButton = document.querySelector('.profile__edit-button');
-let closeFormButton = document.querySelector('.edit-form__close');
-let nameInput = document.querySelector('.form__input_text_name');
-let roleInput = document.querySelector('.form__input_text_role');
-let elementSignature = document.querySelector('.element__signature');
-let currentUserName = document.querySelector('.profile__title');
-let specially = document.querySelector('.profile__subtitle');
+const popupEditForm = document.querySelector('.edit-form');
+const editButton = document.querySelector('.profile__edit-button');
+const popupClose = document.querySelectorAll('.popup__close');
+const editFormClose = document.querySelector('.edit-form_close');
+const addFormClose = document.querySelector('.add-form_close');
+const windowImgClose = document.querySelector('.window-img_close')
+const popupFormSubmitButton = document.querySelectorAll('.popup__form-submit-button');
 
-let addButton = document.querySelector('.add-button');
-let addForm = document.querySelector('.add-form');
-let formImg = document.querySelector('#userImg');
-let addCloseFormButton = document.querySelector('.add-form__close');
-let formJourney = document.querySelector('#userImg');
-let textInput = document.querySelector('.form__input_text_imd');
-let srcInput = document.querySelector('.form__input_src_img');
-let elements = document.querySelector('.elements');
-let element = document.querySelector('.element');
+const popupForm = document.querySelector('.popup__form');
+const popupFormUserInfo = document.querySelector('#userInfo');
+const popupFormUserImg = document.querySelector('#userImg')
+const popupFormInputTextName = document.querySelector('.popup__form-input_text_name');
+const popupFormInputTextRole = document.querySelector('.popup__form-input_text_role');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+
+
+const popupWindowImg = document.querySelector('.window-img');
+const popupPicture = document.querySelector('.popup__picture');
+const popupText = document.querySelector('.popup__text');
+const popupImage = document.querySelector('.popup_image')
+
+const popupAddForm = document.querySelector('.add-form');
+const popupOverlay = document.querySelector('.popup_overlay');
+const blockProfileAddButton = document.querySelector('.block-profile__add-button');
+
+const popupFormInputTextImg = document.querySelector('.popup__form-input_text_img');
+const popupformInputSrcImg = document.querySelector('.popupform-input_src_img');
+
 const userTemplate = document.querySelector('#element').content;
-let buttonSubmit = document.querySelector('.form__submit-button');
-
-let elementTextPhoto = document.querySelectorAll('.element__text-photo');
-let elementLikeList = document.querySelectorAll('.element__like');
-let elementImageList = document.querySelectorAll('.element__image');
-
-let deleteButton = document.querySelectorAll('.element__delete-button');
+const elements = document.querySelector('.elements');
+const element = elements.querySelector('.element');
 
 
-let windowImg = document.querySelector('.window-img');
-let windowImgConteiner = document.querySelector('.window-img__conteiner');
-let windowImgClose = document.querySelector('.window-img__close');
-let windowImgPicture = document.querySelector('.window-img__picture');
-let windowImgText = document.querySelector('.window-img__text');
+
+let popup = document.querySelector('.popup');
 
 
-function openModal () {
-    popup.classList.add('edit-form_overlay');
 
-    nameInput.value = currentUserName.innerHTML;
-    roleInput.value = specially.innerHTML;
+
+let initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+initialCards.forEach((element) => {
+    forEachCards (element);
+})
+
+function forEachCards (element) {
+
+    const userElement = userTemplate.querySelector('.element').cloneNode(true);
+
+    const textPhoto = userElement.querySelector('.element__text-photo');
+
+    const srcImage = userElement.querySelector('.element__image');
+
+    const elementLick = userElement.querySelector('.element__like');
+
+    const elementDeleteButton = userElement.querySelector('.element__delete-button');
+
+    textPhoto.textContent = element.name;
+    srcImage.src = element.link; 
+
+
+    elements.prepend(userElement);
+
+
+
+    function jkh (evt) {
+        const button = evt.target;
+    }
+    
+    elementLick.addEventListener('click', function(evt) {
+        if(evt.target.classList.toggle('element__like_filled')) {
+            jkh (evt);
+        }
+    });
+
+    function kjnvjke (evt) {
+        const button = evt.target;
+    }
+
+    elementDeleteButton.addEventListener('click', function(evt) {
+        if(evt.target.closest('.element').remove()) {
+            kjnvjke(evt);
+        }
+    });
+
+
+    function ahbegrljhbe (evt) {
+        if(srcImage === evt.target) {
+            popupWindowImg.classList.add('popup_image');
+        }
+        popupText.textContent = textPhoto.textContent;
+        popupPicture.src = srcImage.src;
+        closePopupWindow ();
+    }
+
+    srcImage.addEventListener('click', ahbegrljhbe);
+}
+
+
+
+
+
+function reconciliationOpenPopup (evt) {
+    if(editButton === evt.target) {
+        popupFormInputTextName.value = profileTitle.textContent
+        popupFormInputTextRole.value = profileSubtitle.textContent
+        openPopup(popupEditForm);
+    };
+    if(blockProfileAddButton === evt.target) {
+        popupFormInputTextImg.value = '';
+        popupformInputSrcImg.value = '';
+        openPopup(popupAddForm);
+    }
 }
 
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
 
-    currentUserName.innerHTML = nameInput.value;
-    specially.innerHTML = roleInput.value;
-
-    closeModal();
+    profileTitle.textContent = popupFormInputTextName.value
+    profileSubtitle.textContent = popupFormInputTextRole.value
+    closePopup(popupEditForm);
 }
 
-function closeModal () {
-    popup.classList.remove('edit-form_overlay');
+
+
+
+
+
+function openPopup (popup) {
+    popup.classList.add('popup_overlay');
 }
 
-function openFormAddImg() {
-    addForm.classList.add('add-form_overlay');
-    textInput.value = '';
-    srcInput.value = '';
+
+
+function close (evt) {
+    if(editFormClose === evt.target) {
+        closePopup(popupEditForm);
+    };
+    if(addFormClose === evt.target) {
+        closePopup(popupAddForm);
+    };
+    if(windowImgClose === evt.target) {
+        closePopupWindow(popupWindowImg);
+    }
 }
+
+function closePopupWindow (popup) {
+    popup.classList.remove('popup_image');
+}
+
+function closePopup (popup) {
+    popup.classList.remove('popup_overlay');
+}
+
+
 
 function addFormSubmitHungler (evt) {
     evt.preventDefault()
@@ -70,72 +191,59 @@ function addFormSubmitHungler (evt) {
 
     let srcImage = userElement.querySelector('.element__image');
 
-    textPhoto.textContent = textInput.value;
-    srcImage.src = srcInput.value; 
+    const elementLick = userElement.querySelector('.element__like');
+
+    const elementDeleteButton = userElement.querySelector('.element__delete-button');
+
+
+    textPhoto.textContent = popupFormInputTextImg.value;
+    srcImage.src = popupformInputSrcImg.value; 
+
+
 
     elements.prepend(userElement);
 
-    closeAddForm ();
+    function jkh (evt) {
+        const button = evt.target;
+    }
+    
+    elementLick.addEventListener('click', function(evt) {
+        if(evt.target.classList.toggle('element__like_filled')) {
+            jkh (evt)
+        }
+    });
+
+    function kjnvjke (evt) {
+        const button = evt.target;
+    }
+
+    elementDeleteButton.addEventListener('click', function(evt) {
+        if(evt.target.closest('.element').remove()) {
+            kjnvjke(evt)
+        }
+    });
+
+
+    function ahbegrljhbe (evt) {
+        if(srcImage === evt.target) {
+            popupWindowImg.classList.add('popup_image');
+        }
+        popupText.textContent = textPhoto.textContent;
+        popupPicture.src = srcImage.src;
+        closePopupWindow ();
+    }
+
+    srcImage.addEventListener('click', ahbegrljhbe);
+
+    closePopup(popupAddForm);
 }
 
-function closeAddForm () {
-    addForm.classList.remove('add-form_overlay');  
-}
 
 
-function onLikeEvent (evt) {
-evt.target.classList.toggle('element__like_filled');
-}
-
-
-elementLikeList.forEach(function (element) {
-    element.addEventListener('click', onLikeEvent);
+editButton.addEventListener('click', reconciliationOpenPopup);
+blockProfileAddButton.addEventListener('click', reconciliationOpenPopup);
+popupClose.forEach((button) => {
+    button.addEventListener('click', close)
 });
-
-function onDeleteButton (evt) {
-    evt.target.closest('.element').remove();  
-}
-
-deleteButton.forEach(function(button){
-    button.addEventListener('click', onDeleteButton)
-});
-
-
-function openWindowImg (evt) {
-    element = evt.target;
-    windowImg.classList.add('window-img_overlay');
-    windowImgPicture.src = element.src;
-    windowImgText.textContent = element.textContent;
-}
-
-
-elementImageList.forEach(function(img) {
-    img.addEventListener('click', openWindowImg);
-});
-
-
-function removeSwo () {
-    windowImg.classList.remove('window-img_overlay');
-}
-
-
-
-
-
-
-closeFormButton.addEventListener('click', closeModal);
-editButton.addEventListener('click', openModal);
-form.addEventListener('submit', formSubmitHandler); 
-addButton.addEventListener('click', openFormAddImg);
-formImg.addEventListener('submit', addFormSubmitHungler);
-addCloseFormButton.addEventListener('click', closeAddForm);
-windowImgClose.addEventListener('click', removeSwo);
-
-
-// не могу разобраться, как мне нужно обнулить события, чтобы запустить заново forEach с новым количеством элементов в массиве и добавлять события. Ведь при удалении или добавлении элементов, события остаются, тем самым уменьшают быструю работу интерфейса, как мне кажется!
-
-/*function removeEvtList () {
-    removeEventListener('click', onLikeEvent);
-    removeEventListener('click', onDeleteButton);
-    removeEventListener('click', openWindowImg)
-}*/
+popupFormUserInfo.addEventListener('submit', formSubmitHandler);
+popupFormUserImg.addEventListener('submit', addFormSubmitHungler);

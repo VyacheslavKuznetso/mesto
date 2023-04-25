@@ -1,6 +1,5 @@
-.add-form_overlay {
+.popup_overlay {
     visibility: visible;
     pointer-events: all;
     opacity: 1;
 }
-
