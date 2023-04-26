@@ -92,14 +92,14 @@ function prependCard (element) {
       }); 
 
 
-    function ahbegrljhbe (evt) {
+    function openBigPicture (evt) {
         if(srcImage === evt.target) {
             popupWindowImg.classList.add('popup_image');
         }
         popupText.textContent = textPhoto.textContent;
         popupPicture.src = srcImage.src;
     }
-    srcImage.addEventListener('click', ahbegrljhbe);
+    srcImage.addEventListener('click', openBigPicture);
 
     return cardElement
 }
@@ -136,9 +136,9 @@ function handleCardFormSubmit (evt) {
 
     const userElement = userTemplate.querySelector('.element').cloneNode(true);
 
-    let textPhoto = userElement.querySelector('.element__text-photo');
+    const textPhoto = userElement.querySelector('.element__text-photo');
 
-    let srcImage = userElement.querySelector('.element__image');
+    const srcImage = userElement.querySelector('.element__image');
 
     const elementLick = userElement.querySelector('.element__like');
 
@@ -161,7 +161,7 @@ function handleCardFormSubmit (evt) {
     }); 
 
 
-    function ahbegrljhbe (evt) {
+    function openBigPicture (evt) {
         if(srcImage === evt.target) {
             popupWindowImg.classList.add('popup_image');
         }
@@ -169,7 +169,7 @@ function handleCardFormSubmit (evt) {
         popupPicture.src = srcImage.src;
     }
 
-    srcImage.addEventListener('click', ahbegrljhbe);
+    srcImage.addEventListener('click', openBigPicture);
 
     removeTextFormSubmit()
 }
