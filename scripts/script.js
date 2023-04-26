@@ -1,12 +1,12 @@
-const popupEditForm = document.querySelector('.edit-form');
+const profilePopup = document.querySelector('.edit-form');
 const editButton = document.querySelector('.profile__edit-button');
-const popupClose = document.querySelectorAll('.popup__close');
+const closeButtons = document.querySelectorAll('.popup__close');
 const editFormClose = document.querySelector('.popup__close_edit-form');
 const addFormClose = document.querySelector('.popup__close_add-form');
 const windowImgClose = document.querySelector('.popup__close_window-img')
-const popupFormSubmitButton = document.querySelectorAll('.popup__form-submit-button');
+const popupFormSubmitButtons = document.querySelectorAll('.popup__form-submit-button');
 
-const popupForm = document.querySelector('.popup__form');
+const profileForm = document.querySelector('.popup__form');
 const popupFormUserInfo = document.querySelector('#userInfo');
 const popupFormUserImg = document.querySelector('#userImg')
 const popupFormInputTextName = document.querySelector('.popup__form-input_text_name');
@@ -20,8 +20,7 @@ const popupPicture = document.querySelector('.popup__picture');
 const popupText = document.querySelector('.popup__text');
 const popupImage = document.querySelector('.popup_image')
 
-const popupAddForm = document.querySelector('.add-form');
-const popupOverlay = document.querySelector('.popup_overlay');
+const addCardPopup = document.querySelector('.add-form');
 const blockProfileAddButton = document.querySelector('.block-profile__add-button');
 
 const popupFormInputTextImg = document.querySelector('.popup__form-input_text_img');
@@ -33,12 +32,9 @@ const element = elements.querySelector('.element');
 
 
 
-let popup = document.querySelector('.popup');
 
 
-
-
-let initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -66,49 +62,34 @@ let initialCards = [
 ];
 
 
-initialCards.forEach((element) => {
-    forEachCards (element);
-})
+initialCards.forEach(forEachCards);
 
-function forEachCards (element) {
+function prependCard (element) {
 
-    const userElement = userTemplate.querySelector('.element').cloneNode(true);
+    const cardElement = userTemplate.querySelector('.element').cloneNode(true);
 
-    const textPhoto = userElement.querySelector('.element__text-photo');
+    const textPhoto = cardElement.querySelector('.element__text-photo');
 
-    const srcImage = userElement.querySelector('.element__image');
+    const srcImage = cardElement.querySelector('.element__image');
 
-    const elementLick = userElement.querySelector('.element__like');
+    const elementLick = cardElement.querySelector('.element__like');
 
-    const elementDeleteButton = userElement.querySelector('.element__delete-button');
+    const elementDeleteButton = cardElement.querySelector('.element__delete-button');
 
     textPhoto.textContent = element.name;
     srcImage.src = element.link; 
+    srcImage.alt = element.name
 
 
-    elements.prepend(userElement);
 
 
+    elementLick.addEventListener("click", function (evt) {
+        evt.target.classList.toggle("element__like_filled");
+    }); 
 
-    function jkh (evt) {
-        const button = evt.target;
-    }
-    
-    elementLick.addEventListener('click', function(evt) {
-        if(evt.target.classList.toggle('element__like_filled')) {
-            jkh (evt);
-        }
-    });
-
-    function kjnvjke (evt) {
-        const button = evt.target;
-    }
-
-    elementDeleteButton.addEventListener('click', function(evt) {
-        if(evt.target.closest('.element').remove()) {
-            kjnvjke(evt);
-        }
-    });
+    elementDeleteButton.addEventListener("click", function (evt) {
+        evt.target.closest(".element").remove();
+      }); 
 
 
     function ahbegrljhbe (evt) {
@@ -117,72 +98,40 @@ function forEachCards (element) {
         }
         popupText.textContent = textPhoto.textContent;
         popupPicture.src = srcImage.src;
-        closePopupWindow ();
     }
-
     srcImage.addEventListener('click', ahbegrljhbe);
+
+    return cardElement
 }
 
 
-
-
-
-function reconciliationOpenPopup (evt) {
-    if(editButton === evt.target) {
-        popupFormInputTextName.value = profileTitle.textContent
-        popupFormInputTextRole.value = profileSubtitle.textContent
-        openPopup(popupEditForm);
-    };
-    if(blockProfileAddButton === evt.target) {
-        popupFormInputTextImg.value = '';
-        popupformInputSrcImg.value = '';
-        openPopup(popupAddForm);
-    }
+function forEachCards(element) {
+    const userElement = prependCard(element);
+    elements.prepend(userElement);
 }
 
 
-function formSubmitHandler (evt) {
+function handleProfileFormSubmit (evt) {
     evt.preventDefault();
 
     profileTitle.textContent = popupFormInputTextName.value
     profileSubtitle.textContent = popupFormInputTextRole.value
-    closePopup(popupEditForm);
 }
-
-
-
 
 
 
 function openPopup (popup) {
-    popup.classList.add('popup_overlay');
+    popup.classList.add('popup_opened');
 }
 
-
-
-function close (evt) {
-    if(editFormClose === evt.target) {
-        closePopup(popupEditForm);
-    };
-    if(addFormClose === evt.target) {
-        closePopup(popupAddForm);
-    };
-    if(windowImgClose === evt.target) {
-        closePopupWindow(popupWindowImg);
-    }
-}
-
-function closePopupWindow (popup) {
-    popup.classList.remove('popup_image');
-}
 
 function closePopup (popup) {
-    popup.classList.remove('popup_overlay');
+    popup.classList.remove('popup_opened'); // а тут другая прозрачность - background-color: rgba(0, 0, 0, 0.5);
+    popup.classList.remove('popup_image'); // по теории, да, но у данного модального окна совсем другая прозрачность - background-color: rgba(0, 0, 0, 0.9);
 }
 
 
-
-function addFormSubmitHungler (evt) {
+function handleCardFormSubmit (evt) {
     evt.preventDefault()
 
     const userElement = userTemplate.querySelector('.element').cloneNode(true);
@@ -198,30 +147,18 @@ function addFormSubmitHungler (evt) {
 
     textPhoto.textContent = popupFormInputTextImg.value;
     srcImage.src = popupformInputSrcImg.value; 
-
+    srcImage.alt = popupFormInputTextImg.value;
 
 
     elements.prepend(userElement);
 
-    function jkh (evt) {
-        const button = evt.target;
-    }
-    
-    elementLick.addEventListener('click', function(evt) {
-        if(evt.target.classList.toggle('element__like_filled')) {
-            jkh (evt)
-        }
-    });
+    elementLick.addEventListener("click", function (evt) {
+        evt.target.classList.toggle("element__like_filled");
+    }); 
 
-    function kjnvjke (evt) {
-        const button = evt.target;
-    }
-
-    elementDeleteButton.addEventListener('click', function(evt) {
-        if(evt.target.closest('.element').remove()) {
-            kjnvjke(evt)
-        }
-    });
+    elementDeleteButton.addEventListener("click", function (evt) {
+        evt.target.closest(".element").remove();
+    }); 
 
 
     function ahbegrljhbe (evt) {
@@ -230,20 +167,33 @@ function addFormSubmitHungler (evt) {
         }
         popupText.textContent = textPhoto.textContent;
         popupPicture.src = srcImage.src;
-        closePopupWindow ();
     }
 
     srcImage.addEventListener('click', ahbegrljhbe);
 
-    closePopup(popupAddForm);
+    removeTextFormSubmit()
+}
+
+function removeTextFormSubmit () {
+    popupFormInputTextImg.value = '';
+    popupformInputSrcImg.value = '';
 }
 
 
 
-editButton.addEventListener('click', reconciliationOpenPopup);
-blockProfileAddButton.addEventListener('click', reconciliationOpenPopup);
-popupClose.forEach((button) => {
-    button.addEventListener('click', close)
+popupFormSubmitButtons.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
 });
-popupFormUserInfo.addEventListener('submit', formSubmitHandler);
-popupFormUserImg.addEventListener('submit', addFormSubmitHungler);
+editButton.addEventListener('click', () => {
+    popupFormInputTextName.value = profileTitle.textContent
+    popupFormInputTextRole.value = profileSubtitle.textContent
+    openPopup(profilePopup);
+});
+blockProfileAddButton.addEventListener('click', () => openPopup(addCardPopup));
+closeButtons.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
+});
+popupFormUserInfo.addEventListener('submit', handleProfileFormSubmit);
+popupFormUserImg.addEventListener('submit', handleCardFormSubmit);

@@ -1,4 +1,4 @@
-.popup_overlay {
+.popup_opened {
     visibility: visible;
     pointer-events: all;
     opacity: 1;
