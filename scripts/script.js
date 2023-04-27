@@ -4,7 +4,6 @@ const closeButtons = document.querySelectorAll('.popup__close');
 const editFormClose = document.querySelector('.popup__close_edit-form');
 const addFormClose = document.querySelector('.popup__close_add-form');
 const windowImgClose = document.querySelector('.popup__close_window-img')
-const popupFormSubmitButtons = document.querySelectorAll('.popup__form-submit-button');
 
 const profileForm = document.querySelector('.popup__form');
 const popupFormUserInfo = document.querySelector('#userInfo');
@@ -64,7 +63,7 @@ const initialCards = [
 
 initialCards.forEach(forEachCards);
 
-function prependCard (element) {
+function createCard (element) {
 
     const cardElement = userTemplate.querySelector('.element').cloneNode(true);
 
@@ -78,7 +77,7 @@ function prependCard (element) {
 
     textPhoto.textContent = element.name;
     srcImage.src = element.link; 
-    srcImage.alt = element.name
+    srcImage.alt = element.name;
 
 
 
@@ -93,20 +92,20 @@ function prependCard (element) {
 
 
     function openBigPicture (evt) {
-        if(srcImage === evt.target) {
-            popupWindowImg.classList.add('popup_image');
-        }
+        evt.target = openPopup(popupWindowImg);
         popupText.textContent = textPhoto.textContent;
         popupPicture.src = srcImage.src;
+        popupPicture.alt = textPhoto.textContent;
+        
     }
     srcImage.addEventListener('click', openBigPicture);
 
-    return cardElement
+    return cardElement;
 }
 
 
 function forEachCards(element) {
-    const userElement = prependCard(element);
+    const userElement = createCard(element);
     elements.prepend(userElement);
 }
 
@@ -116,6 +115,8 @@ function handleProfileFormSubmit (evt) {
 
     profileTitle.textContent = popupFormInputTextName.value
     profileSubtitle.textContent = popupFormInputTextRole.value
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
 }
 
 
@@ -126,68 +127,29 @@ function openPopup (popup) {
 
 
 function closePopup (popup) {
-    popup.classList.remove('popup_opened'); // а тут другая прозрачность - background-color: rgba(0, 0, 0, 0.5);
-    popup.classList.remove('popup_image'); // по теории, да, но у данного модального окна совсем другая прозрачность - background-color: rgba(0, 0, 0, 0.9);
+    popup.classList.remove('popup_opened'); 
 }
 
 
 function handleCardFormSubmit (evt) {
     evt.preventDefault()
 
-    const userElement = userTemplate.querySelector('.element').cloneNode(true);
-
-    const textPhoto = userElement.querySelector('.element__text-photo');
-
-    const srcImage = userElement.querySelector('.element__image');
-
-    const elementLick = userElement.querySelector('.element__like');
-
-    const elementDeleteButton = userElement.querySelector('.element__delete-button');
-
-
-    textPhoto.textContent = popupFormInputTextImg.value;
-    srcImage.src = popupformInputSrcImg.value; 
-    srcImage.alt = popupFormInputTextImg.value;
-
-
-    elements.prepend(userElement);
-
-    elementLick.addEventListener("click", function (evt) {
-        evt.target.classList.toggle("element__like_filled");
-    }); 
-
-    elementDeleteButton.addEventListener("click", function (evt) {
-        evt.target.closest(".element").remove();
-    }); 
-
-
-    function openBigPicture (evt) {
-        if(srcImage === evt.target) {
-            popupWindowImg.classList.add('popup_image');
-        }
-        popupText.textContent = textPhoto.textContent;
-        popupPicture.src = srcImage.src;
+    const element = {
+        name: popupFormInputTextImg.value,
+        link: popupformInputSrcImg.value
     }
 
-    srcImage.addEventListener('click', openBigPicture);
-
-    removeTextFormSubmit()
-}
-
-function removeTextFormSubmit () {
-    popupFormInputTextImg.value = '';
-    popupformInputSrcImg.value = '';
+    forEachCards(element);
+    evt.target.reset();
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
 }
 
 
 
-popupFormSubmitButtons.forEach((button) => {
-    const popup = button.closest('.popup');
-    button.addEventListener('click', () => closePopup(popup));
-});
 editButton.addEventListener('click', () => {
-    popupFormInputTextName.value = profileTitle.textContent
-    popupFormInputTextRole.value = profileSubtitle.textContent
+    popupFormInputTextName.value = profileTitle.textContent;
+    popupFormInputTextRole.value = profileSubtitle.textContent;
     openPopup(profilePopup);
 });
 blockProfileAddButton.addEventListener('click', () => openPopup(addCardPopup));
