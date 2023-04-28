@@ -115,7 +115,7 @@ function handleProfileFormSubmit (evt) {
 
     profileTitle.textContent = popupFormInputTextName.value
     profileSubtitle.textContent = popupFormInputTextRole.value
-    closePopup(addCardPopup);
+    closePopup(profilePopup);
 }
 
 
