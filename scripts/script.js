@@ -61,7 +61,7 @@ const initialCards = [
 ];
 
 
-initialCards.forEach(forEachCards);
+initialCards.forEach(prependCard);
 
 function createCard (element) {
 
@@ -91,11 +91,11 @@ function createCard (element) {
       }); 
 
 
-    function openBigPicture (evt) {
-        evt.target = openPopup(popupWindowImg);
-        popupText.textContent = textPhoto.textContent;
-        popupPicture.src = srcImage.src;
-        popupPicture.alt = textPhoto.textContent;
+    function openBigPicture () {
+      openPopup(popupWindowImg);
+      popupText.textContent = textPhoto.textContent;
+      popupPicture.src = srcImage.src;
+      popupPicture.alt = textPhoto.textContent;
         
     }
     srcImage.addEventListener('click', openBigPicture);
@@ -104,7 +104,7 @@ function createCard (element) {
 }
 
 
-function forEachCards(element) {
+function prependCard(element) {
     const userElement = createCard(element);
     elements.prepend(userElement);
 }
@@ -115,8 +115,7 @@ function handleProfileFormSubmit (evt) {
 
     profileTitle.textContent = popupFormInputTextName.value
     profileSubtitle.textContent = popupFormInputTextRole.value
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+    closePopup(addCardPopup);
 }
 
 
@@ -139,10 +138,9 @@ function handleCardFormSubmit (evt) {
         link: popupformInputSrcImg.value
     }
 
-    forEachCards(element);
+    prependCard (element);
     evt.target.reset();
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+    closePopup(addCardPopup);
 }
 
 
