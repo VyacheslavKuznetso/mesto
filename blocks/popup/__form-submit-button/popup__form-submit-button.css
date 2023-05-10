@@ -3,21 +3,16 @@
     padding: 0;
     align-self: center;
     min-height: 50px;
-    background-color: #000000;
     border-radius: 2px;
-    cursor: pointer;
+    cursor: default;
     margin-top: 48px;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
-    color: #FFFFFF;
 }
 
-.popup__form-submit-button:hover {
-    opacity: 0.8;
-}
 
 
 @media screen and (max-width: 425px) {
