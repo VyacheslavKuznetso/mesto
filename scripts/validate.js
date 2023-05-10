@@ -30,14 +30,14 @@ const enableValidation = (optic) => {
     const showInputError = (formElement, inputElement, errorMessage) => {
         const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.add(optic.inputErrorClass);
-        errorElement.classList.add('popup__message_input-error')
+        errorElement.classList.add(optic.spenMessageError)
         errorElement.textContent = errorMessage
     }
 
     const hideInputError = (formElement, inputElement) => {
         const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(optic.inputErrorClass);
-        errorElement.classList.remove('popup__message_input-error')
+        errorElement.classList.remove(optic.spenMessageError)
         errorElement.textContent = ''
     }
 

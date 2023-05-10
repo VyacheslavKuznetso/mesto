@@ -85,6 +85,15 @@ function handleProfileFormSubmit (evt) {
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-input',
+    submitButtonSelector: '.popup__form-submit-button',
+    inactiveButtonClass: 'popup__form-submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    spenMessageError: 'popup__message_input-error',
+    errorClass: 'popup__form-submit-button_visible'
+  })
 }
 
 
@@ -106,11 +115,10 @@ function handleCardFormSubmit (evt) {
   closePopup(addCardPopup);
 }
 
-function handleKeyDown(evt) {
+function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    closePopup(profilePopup);
-    closePopup(addCardPopup);
-    closePopup(popupWindowImg);
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup)
   }
 }
 
@@ -125,36 +133,18 @@ popups.forEach((pop) => {
 })
 
 
-document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keydown', closeByEscape);
 
 
 editButton.addEventListener('click', () => {
   popupFormInputTextName.value = profileTitle.textContent;
   popupFormInputTextRole.value = profileSubtitle.textContent;
   openPopup(profilePopup);
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__form-submit-button',
-    inactiveButtonClass: 'popup__form-submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__form-submit-button_visible'
-})
 
 
 });
 blockProfileAddButton.addEventListener('click', () => {
   openPopup(addCardPopup);
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__form-submit-button',
-    inactiveButtonClass: 'popup__form-submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__form-submit-button_visible'
-})
-
-
 })
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
