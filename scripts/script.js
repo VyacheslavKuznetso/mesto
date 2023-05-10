@@ -141,6 +141,7 @@ editButton.addEventListener('click', () => {
     errorClass: 'popup__form-submit-button_visible'
 })
 
+
 });
 blockProfileAddButton.addEventListener('click', () => {
   openPopup(addCardPopup);
@@ -152,6 +153,7 @@ blockProfileAddButton.addEventListener('click', () => {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__form-submit-button_visible'
 })
+
 
 })
 closeButtons.forEach((button) => {
