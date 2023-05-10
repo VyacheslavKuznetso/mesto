@@ -48,7 +48,7 @@ const enableValidation = (optic) => {
             hideInputError(formElement, inputElement)
         }
     }
-    
+
     const setEventListeners = (formElement) => {
         const inputList = Array.from(formElement.querySelectorAll(optic.inputSelector));
         const buttonElement = formElement.querySelector(optic.submitButtonSelector);
@@ -71,14 +71,4 @@ const enableValidation = (optic) => {
 
 }
 
-
-
-enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__form-submit-button',
-    inactiveButtonClass: 'popup__form-submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__form-submit-button_visible'
-})
 
