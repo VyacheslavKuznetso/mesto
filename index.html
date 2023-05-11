@@ -47,11 +47,11 @@
             <form class="popup__form" id="userInfo" name="userInfo">
                 <h2 class="popup__form-title">Редактировать профиль</h2>
                 <div class="popup__input-conteqner">
-                    <input id="name" pattern="^[а-яА-ЯёЁ -]+$" minlength="2" maxlength="40" class="popup__form-input popup__form-input_text_name" required placeholder="Name" type="text" name="userName" value="" />
+                    <input id="name" pattern="^[а-яА-ЯёЁ \-]+$" minlength="2" maxlength="40" class="popup__form-input popup__form-input_text_name" required placeholder="Name" type="text" name="userName" value="" />
                     <span id="name-error" class="popup__message"></span>
                 </div>
                 <div class="popup__input-conteqner">
-                    <input id="job" pattern="^[а-яА-ЯёЁ -]+$" minlength="2" maxlength="200" class="popup__form-input popup__form-input_text_role" required placeholder="job" type="text" name="userRole" value="" />
+                    <input id="job" pattern="^[а-яА-ЯёЁ \-]+$" minlength="2" maxlength="200" class="popup__form-input popup__form-input_text_role" required placeholder="job" type="text" name="userRole" value="" />
                     <span id="job-error" class="popup__message"></span>
                 </div>
                 <button class="popup__form-submit-button" type="submit" value="Сохранить">Сохранить</button>

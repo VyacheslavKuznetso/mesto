@@ -34,6 +34,7 @@ const elementLick = document.querySelector('.element__like');
 const elementDeleteButton = document.querySelector('.element__delete-button');
 const popups = document.querySelectorAll('.popup')
 
+const blockProfile = document.querySelector('.block-profile')
 
 
 
@@ -85,20 +86,13 @@ function handleProfileFormSubmit (evt) {
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__form-submit-button',
-    inactiveButtonClass: 'popup__form-submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    spenMessageError: 'popup__message_input-error',
-    errorClass: 'popup__form-submit-button_visible'
-  })
+  document.addEventListener('keydown', closeByEscape);
 }
 
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened'); 
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 
@@ -133,19 +127,28 @@ popups.forEach((pop) => {
 })
 
 
-document.addEventListener('keydown', closeByEscape);
 
-
-editButton.addEventListener('click', () => {
-  popupFormInputTextName.value = profileTitle.textContent;
-  popupFormInputTextRole.value = profileSubtitle.textContent;
-  openPopup(profilePopup);
-
-
-});
-blockProfileAddButton.addEventListener('click', () => {
-  openPopup(addCardPopup);
+blockProfile.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('profile__edit-button')) {
+    popupFormInputTextName.value = profileTitle.textContent;
+    popupFormInputTextRole.value = profileSubtitle.textContent;
+    openPopup(profilePopup);
+  }
+  if (evt.target.classList.contains('block-profile__add-button')) {
+    openPopup(addCardPopup);
+  }
+  enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-input',
+    submitButtonSelector: '.popup__form-submit-button',
+    inactiveButtonClass: 'popup__form-submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    spenMessageError: 'popup__message_input-error',
+    errorClass: 'popup__form-submit-button_visible'
+  })
 })
+
+
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));

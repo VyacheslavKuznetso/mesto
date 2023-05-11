@@ -1,13 +1,4 @@
-
-
-
-
-
-
-
 const enableValidation = (optic) => {
-
-
 
     const hasInvalidInput = (inputList) => {
         return inputList.some((inputElement) => {
