@@ -1,10 +1,10 @@
-.popup__input-conteqner {
+.popup__input-container {
     max-width: 358px;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
 }
 
-.popup__input-conteqner:last-of-type {
+.popup__input-container:last-of-type {
     margin-bottom: 0;
 }

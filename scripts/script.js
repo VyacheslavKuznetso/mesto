@@ -34,7 +34,7 @@ const elementLick = document.querySelector('.element__like');
 const elementDeleteButton = document.querySelector('.element__delete-button');
 const popups = document.querySelectorAll('.popup')
 
-const blockProfile = document.querySelector('.block-profile')
+const blockProfile = document.querySelector('.block-profile');
 
 
 
@@ -128,6 +128,7 @@ popups.forEach((pop) => {
 
 
 
+
 blockProfile.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('profile__edit-button')) {
     popupFormInputTextName.value = profileTitle.textContent;
@@ -146,6 +147,7 @@ blockProfile.addEventListener('click', (evt) => {
     spenMessageError: 'popup__message_input-error',
     errorClass: 'popup__form-submit-button_visible'
   })
+
 })
 
 
