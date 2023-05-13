@@ -24,23 +24,16 @@ const hasInvalidInput = (inputList) => {
     })
 }
 
-function ieafi(buttonElement) {
-    buttonElement.setAttribute('disabled', true)
-    buttonElement.classList.remove(validationConfigs.errorClass)
-    buttonElement.classList.add(validationConfigs.inactiveButtonClass)
-}
-
-function jqefyv(buttonElement) {
-    buttonElement.classList.add(validationConfigs.errorClass)
-    buttonElement.removeAttribute('disabled')
-    buttonElement.classList.remove(validationConfigs.inactiveButtonClass)
-}
 
 const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
-        ieafi (buttonElement)
+        buttonElement.setAttribute('disabled', true)
+        buttonElement.classList.remove(validationConfigs.errorClass)
+        buttonElement.classList.add(validationConfigs.inactiveButtonClass)
     } else {
-        jqefyv(buttonElement)
+        buttonElement.classList.add(validationConfigs.errorClass)
+        buttonElement.removeAttribute('disabled')
+        buttonElement.classList.remove(validationConfigs.inactiveButtonClass)
     }
 }
 
@@ -70,8 +63,7 @@ const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(validationConfigs.inputSelector));
     const buttonElement = formElement.querySelector(validationConfigs.submitButtonSelector);
     buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(validationConfigs.inactiveButtonClass)
-    toggleButtonState(inputList, buttonElement)
+    buttonElement.classList.add(validationConfigs.inactiveButtonClass);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
@@ -79,6 +71,7 @@ const setEventListeners = (formElement) => {
             toggleButtonState(inputList, buttonElement)
         })
     })
+
 }
 
 
