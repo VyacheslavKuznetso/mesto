@@ -1,3 +1,4 @@
+const blockProfile = document.querySelector('.block-profile');
 const profilePopup = document.querySelector('.edit-form');
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -34,7 +35,10 @@ const elementLick = document.querySelector('.element__like');
 const elementDeleteButton = document.querySelector('.element__delete-button');
 const popups = document.querySelectorAll('.popup')
 
-const blockProfile = document.querySelector('.block-profile');
+
+
+const profileEditSubmitButton = profilePopup.querySelector('.popup__form-submit-button');
+const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__form-submit-button')
 
 
 
@@ -79,6 +83,11 @@ function handleProfileFormSubmit (evt) {
 
   profileTitle.textContent = popupFormInputTextName.value
   profileSubtitle.textContent = popupFormInputTextRole.value
+
+  profileEditSubmitButton.setAttribute('disabled', true);
+  profileEditSubmitButton.classList.add('popup__form-submit-button_disabled');
+  profileEditSubmitButton.classList.remove('popup__form-submit-button_visible');
+
   closePopup(profilePopup);
 }
 
@@ -104,6 +113,10 @@ function handleCardFormSubmit (evt) {
     link: popupformInputSrcImg.value
   }
 
+  addCardPopupSubmitButton.setAttribute('disabled', true);
+  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled');
+  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible');
+  
   prependCard (element);
   evt.target.reset();
   closePopup(addCardPopup);

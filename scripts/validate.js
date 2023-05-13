@@ -62,8 +62,8 @@ const isValid = (formElement, inputElement) => {
 const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(validationConfigs.inputSelector));
     const buttonElement = formElement.querySelector(validationConfigs.submitButtonSelector);
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(validationConfigs.inactiveButtonClass);
+
+    toggleButtonState(inputList, buttonElement)
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
@@ -73,7 +73,6 @@ const setEventListeners = (formElement) => {
     })
 
 }
-
 
 
 enableValidation(validationConfigs);
