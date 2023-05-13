@@ -1,59 +1,14 @@
+const validationConfigs = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-input',
+    submitButtonSelector: '.popup__form-submit-button',
+    inactiveButtonClass: 'popup__form-submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    spenMessageError: 'popup__message_input-error',
+    errorClass: 'popup__form-submit-button_visible'
+}
+
 const enableValidation = (optic) => {
-
-    const hasInvalidInput = (inputList) => {
-        return inputList.some((inputElement) => {
-            return !inputElement.validity.valid
-        })
-    }
-
-    const toggleButtonState = (inputList, buttonElement) => {
-        if (hasInvalidInput(inputList)) {
-            buttonElement.setAttribute('disabled', true)
-            buttonElement.classList.remove(optic.inactiveButtonClass)
-            buttonElement.classList.add(optic.errorClass)
-        } else {
-            buttonElement.classList.add(optic.inactiveButtonClass)
-            buttonElement.removeAttribute('disabled')
-            buttonElement.classList.remove(optic.errorClass)
-        }
-    }
-
-    const showInputError = (formElement, inputElement, errorMessage) => {
-        const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-        inputElement.classList.add(optic.inputErrorClass);
-        errorElement.classList.add(optic.spenMessageError)
-        errorElement.textContent = errorMessage
-    }
-
-    const hideInputError = (formElement, inputElement) => {
-        const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-        inputElement.classList.remove(optic.inputErrorClass);
-        errorElement.classList.remove(optic.spenMessageError)
-        errorElement.textContent = ''
-    }
-
-    const isValid = (formElement, inputElement) => {
-        if (!inputElement.validity.valid) {
-            showInputError(formElement, inputElement, inputElement.validationMessage)
-        } else {
-            hideInputError(formElement, inputElement)
-        }
-    }
-
-    const setEventListeners = (formElement) => {
-        const inputList = Array.from(formElement.querySelectorAll(optic.inputSelector));
-        const buttonElement = formElement.querySelector(optic.submitButtonSelector);
-        
-        toggleButtonState(inputList, buttonElement)
-
-        inputList.forEach((inputElement) => {
-            inputElement.addEventListener('input', () => {
-                isValid(formElement, inputElement)
-                toggleButtonState(inputList, buttonElement)
-            })
-        })
-        
-    }
 
     const formList = Array.from(document.querySelectorAll(optic.formSelector));
     formList.forEach((formElement) => {
@@ -63,3 +18,69 @@ const enableValidation = (optic) => {
 }
 
 
+const hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid
+    })
+}
+
+function ieafi(buttonElement) {
+    buttonElement.setAttribute('disabled', true)
+    buttonElement.classList.remove(validationConfigs.errorClass)
+    buttonElement.classList.add(validationConfigs.inactiveButtonClass)
+}
+
+function jqefyv(buttonElement) {
+    buttonElement.classList.add(validationConfigs.errorClass)
+    buttonElement.removeAttribute('disabled')
+    buttonElement.classList.remove(validationConfigs.inactiveButtonClass)
+}
+
+const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+        ieafi (buttonElement)
+    } else {
+        jqefyv(buttonElement)
+    }
+}
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add(validationConfigs.inputErrorClass);
+    errorElement.classList.add(validationConfigs.spenMessageError)
+    errorElement.textContent = errorMessage
+}
+
+const hideInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove(validationConfigs.inputErrorClass);
+    errorElement.classList.remove(validationConfigs.spenMessageError)
+    errorElement.textContent = ''
+}
+
+const isValid = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
+        showInputError(formElement, inputElement, inputElement.validationMessage)
+    } else {
+        hideInputError(formElement, inputElement)
+    }
+}
+
+const setEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(validationConfigs.inputSelector));
+    const buttonElement = formElement.querySelector(validationConfigs.submitButtonSelector);
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add(validationConfigs.inactiveButtonClass)
+    toggleButtonState(inputList, buttonElement)
+
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', () => {
+            isValid(formElement, inputElement)
+            toggleButtonState(inputList, buttonElement)
+        })
+    })
+}
+
+
+
+enableValidation(validationConfigs);

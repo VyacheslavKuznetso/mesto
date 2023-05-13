@@ -138,15 +138,6 @@ blockProfile.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('block-profile__add-button')) {
     openPopup(addCardPopup);
   }
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__form-submit-button',
-    inactiveButtonClass: 'popup__form-submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    spenMessageError: 'popup__message_input-error',
-    errorClass: 'popup__form-submit-button_visible'
-  })
 
 })
 
