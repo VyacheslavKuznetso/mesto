@@ -86,7 +86,7 @@ function handleProfileFormSubmit (evt) {
 
   profileEditSubmitButton.setAttribute('disabled', true);
   profileEditSubmitButton.classList.add('popup__form-submit-button_disabled');
-  profileEditSubmitButton.classList.remove('popup__form-submit-button_visible');
+  profileEditSubmitButton.classList.remove('popup__form-submit-button_disabled');
 
   closePopup(profilePopup);
 }
@@ -96,12 +96,14 @@ function handleProfileFormSubmit (evt) {
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
+
 }
 
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened'); 
   document.removeEventListener('keydown', closeByEscape);
+
 }
 
 
@@ -112,14 +114,13 @@ function handleCardFormSubmit (evt) {
     name: popupFormInputTextImg.value,
     link: popupformInputSrcImg.value
   }
-
-  addCardPopupSubmitButton.setAttribute('disabled', true);
-  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled');
-  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible');
   
   prependCard (element);
   evt.target.reset();
   closePopup(addCardPopup);
+  addCardPopupSubmitButton.setAttribute('disabled', true);
+  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled');
+  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible');
 }
 
 function closeByEscape(evt) {
@@ -138,6 +139,7 @@ popups.forEach((pop) => {
     }
   })
 })
+
 
 
 

@@ -47,11 +47,11 @@
             <form class="popup__form" id="userInfo" name="userInfo">
                 <h2 class="popup__form-title">Редактировать профиль</h2>
                 <div class="popup__input-container">
-                    <input id="name" pattern="^[а-яА-ЯёЁ \-]+$" minlength="2" maxlength="40" class="popup__form-input popup__form-input_text_name" required placeholder="Name" type="text" name="userName" value="" />
+                    <input id="name" required minlength="2" maxlength="40" class="popup__form-input popup__form-input_text_name"  placeholder="Name" type="text" name="userName" value="" />
                     <span id="name-error" class="popup__message"></span>
                 </div>
                 <div class="popup__input-container">
-                    <input id="job" pattern="^[а-яА-ЯёЁ \-]+$" minlength="2" maxlength="200" class="popup__form-input popup__form-input_text_role" required placeholder="job" type="text" name="userRole" value="" />
+                    <input id="job" required minlength="2" maxlength="200" class="popup__form-input popup__form-input_text_role"  placeholder="job" type="text" name="userRole" value="" />
                     <span id="job-error" class="popup__message"></span>
                 </div>
                 <button  class="popup__form-submit-button" type="submit" value="Сохранить">Сохранить</button>
@@ -64,11 +64,11 @@
             <form class="popup__form" id="userImg" name="userImg">
                 <h2 class="popup__form-title">Новое место</h2>
                 <div class="popup__input-container">
-                    <input id="text_img"  minlength="2" maxlength="30" class="popup__form-input popup__form-input_text_img" required placeholder="Название" type="text" name="commentImg" value="" />
+                    <input id="text_img" required minlength="2" maxlength="30" class="popup__form-input popup__form-input_text_img" placeholder="Название" type="text" name="commentImg" value="" />
                     <span id="text_img-error" class="popup__message"></span>
                 </div>
                 <div class="popup__input-container">
-                    <input id="url" class="popup__form-input popup__form-input_src_img" required placeholder="Ссылка на картинку" type="url" name="linkImg" value="" />
+                    <input id="url" required class="popup__form-input popup__form-input_src_img" placeholder="Ссылка на картинку" type="url" name="linkImg" value="" />
                     <span id="url-error" class="popup__message"></span>
                 </div>
                 <button class="popup__form-submit-button" type="submit" value="Создать">Создать</button>
