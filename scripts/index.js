@@ -1,3 +1,5 @@
+import { Card, initialCards } from './card.js';
+import { FormValidator, validationConfigs } from './FormValidator.js'
 const blockProfile = document.querySelector('.block-profile');
 const profilePopup = document.querySelector('.edit-form');
 const editButton = document.querySelector('.profile__edit-button');
@@ -26,7 +28,7 @@ const blockProfileAddButton = document.querySelector('.block-profile__add-button
 const popupFormInputTextImg = document.querySelector('.popup__form-input_text_img');
 const popupformInputSrcImg = document.querySelector('.popup__form-input_src_img');
 
-const userTemplate = document.querySelector('#element').content;
+
 const elements = document.querySelector('.elements');
 const element = elements.querySelector('.element');
 
@@ -40,43 +42,38 @@ const popups = document.querySelectorAll('.popup')
 const profileEditSubmitButton = profilePopup.querySelector('.popup__form-submit-button');
 const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__form-submit-button')
 
+const enableValidation = (config) => {
 
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    validator.setEventListeners();
+  });
 
-initialCards.forEach(prependCard);
+}
 
-function createCard (element) {
+enableValidation(validationConfigs);
 
-  const cardElement = userTemplate.querySelector('.element').cloneNode(true);
+initialCards.forEach((cardData) => {
+  const elementCard = new Card(cardData, elements);
+  elementCard.prependCard();
+});
 
-  const textPhoto = cardElement.querySelector('.element__text-photo');
+function handleCardFormSubmit (evt) {
+  evt.preventDefault()
 
-  const srcImage = cardElement.querySelector('.element__image');
-
-
-  textPhoto.textContent = element.name;
-  srcImage.src = element.link; 
-  srcImage.alt = element.name;
-
-
-
-  function openBigPicture () {
-    openPopup(popupWindowImg);
-    popupText.textContent = textPhoto.textContent;
-    popupPicture.src = srcImage.src;
-    popupPicture.alt = textPhoto.textContent;
-        
+  const element = {
+    name: popupFormInputTextImg.value,
+    link: popupformInputSrcImg.value
   }
-  srcImage.addEventListener('click', openBigPicture);
-
-  return cardElement;
+  const elementCard = new Card(element, elements);
+  elementCard.prependCard();
+  evt.target.reset();
+  closePopup(addCardPopup);
+  addCardPopupSubmitButton.setAttribute('disabled', true);
+  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled');
+  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible');
 }
-
-
-function prependCard(element) {
-  const userElement = createCard(element);
-  elements.prepend(userElement);
-}
-
 
 function handleProfileFormSubmit (evt) {
   evt.preventDefault();
@@ -107,20 +104,11 @@ function closePopup (popup) {
 }
 
 
-function handleCardFormSubmit (evt) {
-  evt.preventDefault()
-
-  const element = {
-    name: popupFormInputTextImg.value,
-    link: popupformInputSrcImg.value
-  }
-  
-  prependCard (element);
-  evt.target.reset();
-  closePopup(addCardPopup);
-  addCardPopupSubmitButton.setAttribute('disabled', true);
-  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled');
-  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible');
+function openBigPicture (clickedElement) {
+  openPopup(popupWindowImg);
+  popupText.textContent = clickedElement.querySelector('.element__text-photo').textContent;
+  popupPicture.src = clickedElement.querySelector('.element__image').src;
+  popupPicture.alt = clickedElement.querySelector('.element__text-photo').textContent;     
 }
 
 function closeByEscape(evt) {
@@ -139,9 +127,6 @@ popups.forEach((pop) => {
     }
   })
 })
-
-
-
 
 
 blockProfile.addEventListener('click', (evt) => {
@@ -172,6 +157,10 @@ elements.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('element__delete-button')) {
     evt.target.closest(".element").remove();
   }
-})
 
+  if (evt.target.classList.contains('element__image')) {
+    const clickedElement = evt.target.closest(".element");
+    openBigPicture(clickedElement)
+  }
+})
 
