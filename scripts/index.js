@@ -1,62 +1,96 @@
-import { Card, initialCards } from './card.js';
-import { FormValidator, validationConfigs } from './FormValidator.js'
+import { Card, openPopup, closePopup } from './card.js';
+import { FormValidator } from './FormValidator.js'
 const blockProfile = document.querySelector('.block-profile');
 const profilePopup = document.querySelector('.edit-form');
-const editButton = document.querySelector('.profile__edit-button');
-const closeButtons = document.querySelectorAll('.popup__close');
-const editFormClose = document.querySelector('.popup__close_edit-form');
-const addFormClose = document.querySelector('.popup__close_add-form');
-const windowImgClose = document.querySelector('.popup__close_window-img')
 
-const profileForm = document.querySelector('.popup__form');
+const closeButtons = document.querySelectorAll('.popup__close');
+
 const popupFormUserInfo = document.querySelector('#userInfo');
-const popupFormUserImg = document.querySelector('#userImg')
+const popupFormUserImg = document.querySelector('#userImg');
 const popupFormInputTextName = document.querySelector('.popup__form-input_text_name');
 const popupFormInputTextRole = document.querySelector('.popup__form-input_text_role');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
-
-const popupWindowImg = document.querySelector('.window-img');
-const popupPicture = document.querySelector('.popup__picture');
-const popupText = document.querySelector('.popup__text');
-const popupImage = document.querySelector('.popup_image')
-
 const addCardPopup = document.querySelector('.add-form');
-const blockProfileAddButton = document.querySelector('.block-profile__add-button');
 
 const popupFormInputTextImg = document.querySelector('.popup__form-input_text_img');
 const popupformInputSrcImg = document.querySelector('.popup__form-input_src_img');
 
-
 const elements = document.querySelector('.elements');
-const element = elements.querySelector('.element');
+const cardElement = '#element'
 
-const elementLick = document.querySelector('.element__like');
-
-const elementDeleteButton = document.querySelector('.element__delete-button');
 const popups = document.querySelectorAll('.popup')
 
-
-
 const profileEditSubmitButton = profilePopup.querySelector('.popup__form-submit-button');
-const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__form-submit-button')
+const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__form-submit-button');
+
+
+
+
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const validationConfigs = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__form-submit-button',
+  inactiveButtonClass: 'popup__form-submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  spenMessageError: 'popup__message_input-error',
+  errorClass: 'popup__form-submit-button_visible'
+}
+
+
+
+const formValidators = {};
 
 const enableValidation = (config) => {
-
   const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement) => {
+  formList.forEach((formElement, index) => {
+    const formName = `form${index + 1}`;
     const validator = new FormValidator(config, formElement);
     validator.setEventListeners();
+    formValidators[formName] = validator;
   });
+};
 
-}
+console.log(formValidators);
 
 enableValidation(validationConfigs);
 
+const prependCard = (userElement) => {
+  elements.prepend(userElement);
+}
+
 initialCards.forEach((cardData) => {
-  const elementCard = new Card(cardData, elements);
-  elementCard.prependCard();
+  const elementCard = new Card(cardData, elements, cardElement);
+  prependCard(elementCard.fillCard())
 });
 
 function handleCardFormSubmit (evt) {
@@ -66,13 +100,11 @@ function handleCardFormSubmit (evt) {
     name: popupFormInputTextImg.value,
     link: popupformInputSrcImg.value
   }
-  const elementCard = new Card(element, elements);
-  elementCard.prependCard();
+  const elementCard = new Card(element, elements, cardElement);
+  prependCard(elementCard.fillCard());
   evt.target.reset();
   closePopup(addCardPopup);
-  addCardPopupSubmitButton.setAttribute('disabled', true);
-  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled');
-  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible');
+   // метод toggleButtonState() срабативает один раз- я не могу разобраться почему (когда открыватся форма popupFormUserImg, кнопка не активна, т.к. поля не валидны), после добавления карточки в DOM, и при повторном открытии popupFormUserImg кнопка активна, хотя инпуты не валидны. Но стоит добавить один символ, то валидация срабатывает и делает кнопку неактивной.
 }
 
 function handleProfileFormSubmit (evt) {
@@ -81,46 +113,13 @@ function handleProfileFormSubmit (evt) {
   profileTitle.textContent = popupFormInputTextName.value
   profileSubtitle.textContent = popupFormInputTextRole.value
 
-  profileEditSubmitButton.setAttribute('disabled', true);
-  profileEditSubmitButton.classList.add('popup__form-submit-button_disabled');
-  profileEditSubmitButton.classList.remove('popup__form-submit-button_disabled');
-
   closePopup(profilePopup);
-}
-
-
-
-function openPopup (popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-
-}
-
-
-function closePopup (popup) {
-  popup.classList.remove('popup_opened'); 
-  document.removeEventListener('keydown', closeByEscape);
-
-}
-
-
-function openBigPicture (clickedElement) {
-  openPopup(popupWindowImg);
-  popupText.textContent = clickedElement.querySelector('.element__text-photo').textContent;
-  popupPicture.src = clickedElement.querySelector('.element__image').src;
-  popupPicture.alt = clickedElement.querySelector('.element__text-photo').textContent;     
-}
-
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup)
-  }
+   // а тут наоборот - при открытии popupFormUserInfo кнопка не активна, хотя формы валидны, но стоит добавить один символ, то срабатывает валидация и кнопка актина. Последующие откратия формы, кнопка активна - работает правильно.
 }
 
 
 popups.forEach((pop) => {
-  pop.addEventListener('click', (evt) => {
+  pop.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       const popup = evt.target.closest('.popup')
       closePopup(popup)
@@ -149,18 +148,5 @@ closeButtons.forEach((button) => {
 popupFormUserInfo.addEventListener('submit', handleProfileFormSubmit);
 popupFormUserImg.addEventListener('submit', handleCardFormSubmit);
 
-elements.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('element__like')) {
-    evt.target.classList.toggle("element__like_filled");
-  }
 
-  if (evt.target.classList.contains('element__delete-button')) {
-    evt.target.closest(".element").remove();
-  }
-
-  if (evt.target.classList.contains('element__image')) {
-    const clickedElement = evt.target.closest(".element");
-    openBigPicture(clickedElement)
-  }
-})
 
