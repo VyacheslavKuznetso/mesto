@@ -1,4 +1,4 @@
-import { Card, openPopup, closePopup, closeByEscape } from './card.js';
+import { Card, openPopup, closePopup, closeByEscape } from './Сard.js';
 import { FormValidator } from './FormValidator.js'
 const blockProfile = document.querySelector('.block-profile');
 const profilePopup = document.querySelector('.edit-form');
