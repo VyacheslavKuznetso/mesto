@@ -1,4 +1,4 @@
-import { Card, openPopup, closePopup } from './card.js';
+import { Card, openPopup, closePopup, closeByEscape } from './card.js';
 import { FormValidator } from './FormValidator.js'
 const blockProfile = document.querySelector('.block-profile');
 const profilePopup = document.querySelector('.edit-form');
@@ -18,9 +18,9 @@ const popupFormInputTextImg = document.querySelector('.popup__form-input_text_im
 const popupformInputSrcImg = document.querySelector('.popup__form-input_src_img');
 
 const elements = document.querySelector('.elements');
-const cardElement = '#element'
+const cardElement = '#element';
 
-const popups = document.querySelectorAll('.popup')
+const popups = document.querySelectorAll('.popup');
 
 const profileEditSubmitButton = profilePopup.querySelector('.popup__form-submit-button');
 const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__form-submit-button');
@@ -80,7 +80,7 @@ const enableValidation = (config) => {
   });
 };
 
-console.log(formValidators);
+
 
 enableValidation(validationConfigs);
 
@@ -90,11 +90,11 @@ const prependCard = (userElement) => {
 
 initialCards.forEach((cardData) => {
   const elementCard = new Card(cardData, elements, cardElement);
-  prependCard(elementCard.fillCard())
+  prependCard(elementCard.fillCard());
 });
 
 function handleCardFormSubmit (evt) {
-  evt.preventDefault()
+  evt.preventDefault();
 
   const element = {
     name: popupFormInputTextImg.value,
@@ -104,7 +104,10 @@ function handleCardFormSubmit (evt) {
   prependCard(elementCard.fillCard());
   evt.target.reset();
   closePopup(addCardPopup);
-   // метод toggleButtonState() срабативает один раз- я не могу разобраться почему (когда открыватся форма popupFormUserImg, кнопка не активна, т.к. поля не валидны), после добавления карточки в DOM, и при повторном открытии popupFormUserImg кнопка активна, хотя инпуты не валидны. Но стоит добавить один символ, то валидация срабатывает и делает кнопку неактивной.
+  addCardPopupSubmitButton.setAttribute('disabled', true); 
+  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled'); 
+  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible'); 
+   // метод toggleButtonState() срабативает один раз- я не могу разобраться почему (когда открыватся форма popupFormUserImg, кнопка не активна, т.к. поля не валидны), после добавления карточки в DOM, и при повторном открытии popupFormUserImg кнопка активна, хотя инпуты не валидны(они не заполнены). Но стоит добавить один символ, то валидация срабатывает и делает кнопку неактивной.
 }
 
 function handleProfileFormSubmit (evt) {
@@ -114,7 +117,10 @@ function handleProfileFormSubmit (evt) {
   profileSubtitle.textContent = popupFormInputTextRole.value
 
   closePopup(profilePopup);
-   // а тут наоборот - при открытии popupFormUserInfo кнопка не активна, хотя формы валидны, но стоит добавить один символ, то срабатывает валидация и кнопка актина. Последующие откратия формы, кнопка активна - работает правильно.
+  addCardPopupSubmitButton.setAttribute('disabled', true); 
+  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled'); 
+  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible'); 
+   // а тут наоборот - при открытии popupFormUserInfo кнопка не активна, хотя формы валидны(они заполнены), но стоит добавить один символ, то срабатывает валидация и кнопка актина. Последующие откратия формы, кнопка активна - работает правильно. Прошу меня направить и чуть-чуть мне подсказать, для исправления кода и функциональности 
 }
 
 
@@ -145,7 +151,9 @@ closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+
 popupFormUserInfo.addEventListener('submit', handleProfileFormSubmit);
+
 popupFormUserImg.addEventListener('submit', handleCardFormSubmit);
 
 

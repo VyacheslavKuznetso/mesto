@@ -15,10 +15,10 @@ export function closePopup (popup) {
 
 }
 
-function closeByEscape(evt) {
+export function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup)
+    closePopup(openedPopup);
   }
 }
 
@@ -47,7 +47,7 @@ export class Card {
     this._imageElement = this._element;
     this._imageElement.querySelector('.element__image').alt = this._altImage;
 
-    this._addEventListeners(this._imageElement)
+    this._addEventListeners(this._imageElement);
 
 
     return this._imageElement;
@@ -66,9 +66,9 @@ export class Card {
     
       if (evt.target.classList.contains('element__image')) {
         this._clickedElement = evt.target.closest(".element");
-        this._openBigPicture(this._clickedElement)
+        this._openBigPicture(this._clickedElement);
       }
-    })
+    });
     return this._element;
   }
 
@@ -78,8 +78,6 @@ export class Card {
     popupPicture.src = clickedElement.querySelector('.element__image').src;
     popupPicture.alt = clickedElement.querySelector('.element__text-photo').textContent;     
   }
-
-
 }
 
 
