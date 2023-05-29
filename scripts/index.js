@@ -1,9 +1,14 @@
-import { openPopup, closePopup, closeByEscape, Card } from './Card.js'
+import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
+import { initialCards } from './InitialCards.js'
+
 const blockProfile = document.querySelector('.block-profile');
 const profilePopup = document.querySelector('.edit-form');
 
-const closeButtons = document.querySelectorAll('.popup__close');
+
+const popupWindowImg = document.querySelector('.window-img');
+
+const popupsCloseButtons = document.querySelectorAll('.popup__close');
 
 const popupFormUserInfo = document.querySelector('#userInfo');
 const popupFormUserImg = document.querySelector('#userImg');
@@ -12,49 +17,19 @@ const popupFormInputTextRole = document.querySelector('.popup__form-input_text_r
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
-const addCardPopup = document.querySelector('.add-form');
+const popupAddCard = document.querySelector('.add-form');
 
 const popupFormInputTextImg = document.querySelector('.popup__form-input_text_img');
 const popupformInputSrcImg = document.querySelector('.popup__form-input_src_img');
 
 const elements = document.querySelector('.elements');
-const cardElement = '#element';
+const cardTemplateSelector = '#element';
 
 const popups = document.querySelectorAll('.popup');
 
-const profileEditSubmitButton = profilePopup.querySelector('.popup__form-submit-button');
-const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__form-submit-button');
 
 
 
-
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 const validationConfigs = {
   formSelector: '.popup__form',
@@ -72,8 +47,8 @@ const formValidators = {};
 
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement, index) => {
-    const formName = `form${index + 1}`;
+  formList.forEach((formElement) => {
+    const formName = `form ${formElement.id}`;
     const validator = new FormValidator(config, formElement);
     validator.setEventListeners();
     formValidators[formName] = validator;
@@ -88,8 +63,14 @@ const prependCard = (userElement) => {
   elements.prepend(userElement);
 }
 
+function creationNewCard (element) {
+  const elementCard = new Card(element, elements, cardTemplateSelector, openPopup, popupWindowImg);
+  return elementCard
+}
+
 initialCards.forEach((cardData) => {
-  const elementCard = new Card(cardData, elements, cardElement);
+  creationNewCard(cardData)
+  const elementCard = creationNewCard(cardData)
   prependCard(elementCard.fillCard());
 });
 
@@ -100,14 +81,11 @@ function handleCardFormSubmit (evt) {
     name: popupFormInputTextImg.value,
     link: popupformInputSrcImg.value
   }
-  const elementCard = new Card(element, elements, cardElement);
+  const elementCard = creationNewCard(element);
   prependCard(elementCard.fillCard());
   evt.target.reset();
-  closePopup(addCardPopup);
-  addCardPopupSubmitButton.setAttribute('disabled', true); 
-  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled'); 
-  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible'); 
-   // метод toggleButtonState() срабативает один раз- я не могу разобраться почему (когда открыватся форма popupFormUserImg, кнопка не активна, т.к. поля не валидны), после добавления карточки в DOM, и при повторном открытии popupFormUserImg кнопка активна, хотя инпуты не валидны(они не заполнены). Но стоит добавить один символ, то валидация срабатывает и делает кнопку неактивной.
+  closePopup(popupAddCard);
+  toggleButtonState();
 }
 
 function handleProfileFormSubmit (evt) {
@@ -117,12 +95,28 @@ function handleProfileFormSubmit (evt) {
   profileSubtitle.textContent = popupFormInputTextRole.value
 
   closePopup(profilePopup);
-  addCardPopupSubmitButton.setAttribute('disabled', true); 
-  addCardPopupSubmitButton.classList.add('popup__form-submit-button_disabled'); 
-  addCardPopupSubmitButton.classList.remove('popup__form-submit-button_visible'); 
-   // а тут наоборот - при открытии popupFormUserInfo кнопка не активна, хотя формы валидны(они заполнены), но стоит добавить один символ, то срабатывает валидация и кнопка актина. Последующие откратия формы, кнопка активна - работает правильно. Прошу меня направить и чуть-чуть мне подсказать, для исправления кода и функциональности 
+  toggleButtonState();
 }
 
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
+
+}
+
+
+function closePopup (popup) {
+  popup.classList.remove('popup_opened'); 
+  document.removeEventListener('keydown', closeByEscape);
+
+}
+
+function closeByEscape (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 popups.forEach((pop) => {
   pop.addEventListener('mousedown', (evt) => {
@@ -141,13 +135,13 @@ blockProfile.addEventListener('click', (evt) => {
     openPopup(profilePopup);
   }
   if (evt.target.classList.contains('block-profile__add-button')) {
-    openPopup(addCardPopup);
+    openPopup(popupAddCard);
   }
 
 })
 
 
-closeButtons.forEach((button) => {
+popupsCloseButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });

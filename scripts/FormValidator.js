@@ -8,22 +8,22 @@ export class FormValidator {
     }
 
 
-    _hasInvalidInput (inputList) {
-        return inputList.some((inputElement) => {
+    _hasInvalidInput () {
+        return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid
         })
     }
     
     
-    toggleButtonState(inputList, buttonElement) {
-        if (this._hasInvalidInput(inputList)) {
-          buttonElement.setAttribute('disabled', true);
-          buttonElement.classList.remove(this._config.errorClass);
-          buttonElement.classList.add(this._config.inactiveButtonClass);
+    toggleButtonState() {
+        if (this._hasInvalidInput()) {
+            this._buttonElement.setAttribute('disabled', true);
+            this._buttonElement.classList.remove(this._config.errorClass);
+            this._buttonElement.classList.add(this._config.inactiveButtonClass);
         } else {
-          buttonElement.classList.add(this._config.errorClass);
-          buttonElement.removeAttribute('disabled');
-          buttonElement.classList.remove(this._config.inactiveButtonClass);
+            this._buttonElement.classList.add(this._config.errorClass);
+            this._buttonElement.removeAttribute('disabled');
+            this._buttonElement.classList.remove(this._config.inactiveButtonClass);
         }
     }
       
@@ -55,11 +55,11 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement)
-                this.toggleButtonState(this._inputList, this._buttonElement)
+                this.toggleButtonState()
             })
         })
 
-        this.toggleButtonState(this._inputList, this._buttonElement)
+        this.toggleButtonState()
     
     }
 }
