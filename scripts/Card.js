@@ -22,15 +22,14 @@ export class Card {
 
   fillCard () {
     this._element = this._createCard();
-    this._imageElement = this._element;
-    this._imageElement.querySelector('.element__image').src = this._srcImage;
-    this._imageElement.querySelector('.element__text-photo').textContent = this._textPhoto;
-    this._imageElement.alt = this._altImage;
+    this._element.querySelector('.element__image').src = this._srcImage;
+    this._element.querySelector('.element__text-photo').textContent = this._textPhoto;
+    this._element.alt = this._altImage;
 
-    this._addEventListeners(this._imageElement);
+    this._addEventListeners(this._element);
 
 
-    return this._imageElement;
+    return this._element;
   } 
 
   _addEventListeners() {
@@ -56,7 +55,7 @@ export class Card {
   }
   
   _deleteCard() {
-    this._element.closest(".element").remove();
+    this._element.remove();
   }
   
 

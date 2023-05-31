@@ -53,7 +53,12 @@ const enableValidation = (config) => {
     validator.setEventListeners();
     formValidators[formName] = validator;
   });
+  formValidators["form userInfo"].toggleButtonState()
+  formValidators["form userImg"].toggleButtonState()
+
 };
+
+
 
 
 
@@ -63,14 +68,13 @@ const prependCard = (userElement) => {
   elements.prepend(userElement);
 }
 
-function creationNewCard (element) {
+function createNewCard (element) {
   const elementCard = new Card(element, elements, cardTemplateSelector, openPopup, popupWindowImg);
   return elementCard
 }
 
 initialCards.forEach((cardData) => {
-  creationNewCard(cardData)
-  const elementCard = creationNewCard(cardData)
+  const elementCard = createNewCard(cardData)
   prependCard(elementCard.fillCard());
 });
 
@@ -81,11 +85,10 @@ function handleCardFormSubmit (evt) {
     name: popupFormInputTextImg.value,
     link: popupformInputSrcImg.value
   }
-  const elementCard = creationNewCard(element);
+  const elementCard = createNewCard(element);
   prependCard(elementCard.fillCard());
   evt.target.reset();
   closePopup(popupAddCard);
-  toggleButtonState();
 }
 
 function handleProfileFormSubmit (evt) {
@@ -95,7 +98,6 @@ function handleProfileFormSubmit (evt) {
   profileSubtitle.textContent = popupFormInputTextRole.value
 
   closePopup(profilePopup);
-  toggleButtonState();
 }
 
 function openPopup (popup) {
