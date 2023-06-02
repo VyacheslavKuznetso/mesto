@@ -53,8 +53,6 @@ const enableValidation = (config) => {
     validator.setEventListeners();
     formValidators[formName] = validator;
   });
-  formValidators["form userInfo"].toggleButtonState()
-  formValidators["form userImg"].toggleButtonState()
 
 };
 
@@ -70,7 +68,7 @@ const prependCard = (userElement) => {
 
 function createNewCard (element) {
   const elementCard = new Card(element, elements, cardTemplateSelector, openPopup, popupWindowImg);
-  return elementCard
+  return elementCard;
 }
 
 initialCards.forEach((cardData) => {
@@ -88,14 +86,16 @@ function handleCardFormSubmit (evt) {
   const elementCard = createNewCard(element);
   prependCard(elementCard.fillCard());
   evt.target.reset();
+  formValidators["form userImg"].toggleButtonState();
   closePopup(popupAddCard);
 }
 
 function handleProfileFormSubmit (evt) {
   evt.preventDefault();
 
-  profileTitle.textContent = popupFormInputTextName.value
-  profileSubtitle.textContent = popupFormInputTextRole.value
+  profileTitle.textContent = popupFormInputTextName.value;
+  profileSubtitle.textContent = popupFormInputTextRole.value;
+  formValidators["form userInfo"].toggleButtonState();
 
   closePopup(profilePopup);
 }
@@ -123,8 +123,8 @@ function closeByEscape (evt) {
 popups.forEach((pop) => {
   pop.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
-      const popup = evt.target.closest('.popup')
-      closePopup(popup)
+      const popup = evt.target.closest('.popup');
+      closePopup(popup);
     }
   })
 })
