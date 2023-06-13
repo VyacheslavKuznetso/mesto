@@ -1,18 +1,13 @@
-export class Card {
-  constructor(cardData, elements, templateSelector, openPopup, popupWindowImg) {
-    this._textPhoto = cardData.name;
-    this._srcImage = cardData.link;
-    this._altImage = cardData.name;
+export default class Card {
+  constructor(userInfo, elements, templateSelector) {
+    this._textPhoto = userInfo.name;
+    this._srcImage = userInfo.link;
+    this._altImage = userInfo.name;
     this._elements = elements;
     this._templateSelector = templateSelector;
-    this._openPopup = openPopup;
-    this._popupWindowImg = popupWindowImg;
-    this._popupText = popupWindowImg.querySelector('.popup__text');
-    this._popupPicture = popupWindowImg.querySelector('.popup__picture');
-
   }
 
-  _createCard () {
+  _createCard = () => {
     
     this._cardElement = this._elements.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
 
@@ -33,7 +28,7 @@ export class Card {
   } 
   
 
-  _addEventListeners() {
+  _addEventListeners = () => {
     this._element.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('element__like')) {
         this._toggleLike();
@@ -51,20 +46,17 @@ export class Card {
     });
   }
   
-  _toggleLike() {
+  _toggleLike = () => {
     this._element.querySelector('.element__like').classList.toggle("element__like_filled");
   }
   
-  _deleteCard() {
+  _deleteCard = () => {
     this._element.remove();
   }
   
 
-  _openBigPicture (clickedElement) {
-    this._openPopup(this._popupWindowImg);
-    this._popupText.textContent = clickedElement.querySelector('.element__text-photo').textContent;
-    this._popupPicture.src = clickedElement.querySelector('.element__image').src;
-    this._popupPicture.alt = clickedElement.querySelector('.element__text-photo').textContent;     
+  _openBigPicture = () => {
+    this.open(this._clickedElement);   
   }
 }
 
