@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(userInfo, elements, templateSelector) {
-    this._textPhoto = userInfo.name;
-    this._srcImage = userInfo.link;
-    this._altImage = userInfo.name;
+  constructor(cardElement, elements, templateSelector, classPopupWindowImg) {
+    this._textPhoto = cardElement.name;
+    this._srcImage = cardElement.link;
+    this._altImage = cardElement.name;
     this._elements = elements;
     this._templateSelector = templateSelector;
+    this._classPopupWindowImg = classPopupWindowImg;
   }
 
   _createCard = () => {
@@ -40,7 +41,7 @@ export default class Card {
   
       if (evt.target.classList.contains('element__image')) {
         this._clickedElement = evt.target.closest(".element");
-        this._openBigPicture(this._clickedElement);
+        this._openBigPicture();
       }
       return this._element;
     });
@@ -56,8 +57,8 @@ export default class Card {
   
 
   _openBigPicture = () => {
-    this.open(this._clickedElement);   
+    this._classPopupWindowImg.open(this._clickedElement);
+    
   }
 }
-
 

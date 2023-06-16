@@ -31,6 +31,6 @@ export const popupformInputSrcImg = document.querySelector('.popup__form-input_s
 export const elements = document.querySelector('.elements');
 export const cardTemplateSelector = '#element';
 
-export const selector = 'elements'
+export const selector = '.elements'
 
 export const popups = document.querySelectorAll('.popup');

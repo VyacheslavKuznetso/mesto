@@ -1,7 +1,7 @@
 export default class UserInfo  {
-    constructor({ nameSelector, infoSelector }) {
-        this._nameElement = document.querySelector(nameSelector);
-        this._infoElement = document.querySelector(infoSelector);
+    constructor({ profileTitle, profileSubtitle }) {
+        this._nameElement = profileTitle;
+        this._infoElement = profileSubtitle;
     }
 
     getUserInfo() {
@@ -11,8 +11,8 @@ export default class UserInfo  {
         };
     }
 
-    setUserInfo({ title, subtitle }) {
-        this._nameElement.textContent = title;
-        this._infoElement.textContent = subtitle;
+    setUserInfo({ forInput }) {
+        this._nameElement.textContent = forInput.userName;
+        this._infoElement.textContent = forInput.userRole;
     }
 }
