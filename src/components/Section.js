@@ -6,8 +6,8 @@ export default class Section {
     }
   
     drawElement() {
-      this.initialCards.forEach((userInfo) => {
-        this._renderer(userInfo)
+      this.initialCards.forEach((card) => {
+        this._renderer(card)
       })
     }
   

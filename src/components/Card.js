@@ -40,7 +40,6 @@ export default class Card {
       }
   
       if (evt.target.classList.contains('element__image')) {
-        this._clickedElement = evt.target.closest(".element");
         this._openBigPicture();
       }
       return this._element;
@@ -57,7 +56,7 @@ export default class Card {
   
 
   _openBigPicture = () => {
-    this._classPopupWindowImg.open(this._clickedElement);
+    this._classPopupWindowImg.open(this._textPhoto, this._srcImage);
     
   }
 }
