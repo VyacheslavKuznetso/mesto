@@ -4,7 +4,6 @@ import { FormValidator } from '../components/FormValidator.js'
 import { initialCards } from '../utils/data/InitialCards.js'
 import { validationConfigs, profilePopup, popupWindowImg, popupFormInputTextName, popupFormInputTextRole, profileTitle, profileSubtitle, popupAddCard, elements, cardTemplateSelector, selector, profileEditButton, profileAddButton } from '../utils/constants.js'
 import Section from '../components/Section.js'
-import Popup from '../components/Popup.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
@@ -32,6 +31,7 @@ classPopupWindowImg.setEventListeners()
 
 const createCard = (cardElement) => {
   const card = new Card (cardElement, elements, cardTemplateSelector, classPopupWindowImg);
+  card.fillCard()
   return card
 }
 
@@ -45,12 +45,6 @@ const cardList = new Section ({
 }, selector)
 
 cardList.drawElement();
-
-const userInfoPopup= new Popup (profilePopup);
-
-const popupCard = new Popup (popupAddCard);
-
-
 
 
 const submitCallbackImg = (forInput) => {
@@ -85,12 +79,12 @@ const openProfileEdit = () => {
   popupFormInputTextName.value = inform.name;
   popupFormInputTextRole.value = inform.info;
   formValidators['userInfo'].toggleButtonState()
-  userInfoPopup.open();
+  formUserInfo.open();
 }
 
 const openProfileAdd = () => {
   formValidators['userImg'].toggleButtonState()
-  popupCard.open();
+  formUserImg.open();
 }
 
 profileEditButton.addEventListener('click', openProfileEdit)
