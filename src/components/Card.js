@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardElement, elements, templateSelector, classPopupWindowImg, popupDeleteCard, api) {
+  constructor(cardElement, elements, templateSelector, classPopupWindowImg, popupDeleteCard, api, userId) {
     this._textPhoto = cardElement.name;
     this._srcImage = cardElement.link;
     this._altImage = cardElement.name;
@@ -11,19 +11,20 @@ export default class Card {
     this._classPopupWindowImg = classPopupWindowImg;
     this._popupDeleteCard = popupDeleteCard
     this._api = api
+    this._userId = userId.userData
   }
 
   _createCard = () => {
     
     this._cardElement = this._elements.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
 
-    if(this._id !== '63a2eebb172f06db6050c3a2') {
+    if(this._id !== this._userId) {
       this._deleteButton = this._cardElement.querySelector('.element__delete-button');
 
       this._deleteButton.remove();
     }
 
-    if (this._likes.some(like => like._id === '63a2eebb172f06db6050c3a2')) {
+    if (this._likes.some(like => like._id === this._userId)) {
       this._cardElement.querySelector('.element__like').classList.add("element__like_filled");
     }
     
@@ -68,18 +69,20 @@ export default class Card {
   _toggleLike = () => {
     this._isLiked = this._element.querySelector('.element__like').classList.contains("element__like_filled");
   
+    this._likeButton = this._element.querySelector('.element__like')
+
     if (this._isLiked) {
       this._api.deleteLikeCard(this._element.querySelector('.element__image').id)
         .then((res) => {
           this._element.querySelector('.element__number').textContent = res.likes.length;
-          this._element.querySelector('.element__like').classList.remove("element__like_filled");
+          this._likeButton.classList.remove("element__like_filled");
         })
         .catch(err => console.log(err));
     } else {
       this._api.likeCard(this._element.querySelector('.element__image').id)
         .then((res) => {
           this._element.querySelector('.element__number').textContent = res.likes.length;
-          this._element.querySelector('.element__like').classList.add("element__like_filled");
+          this._likeButton.classList.add("element__like_filled");
         })
         .catch(err => console.log(err));
     }

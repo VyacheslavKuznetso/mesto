@@ -59,7 +59,7 @@ classPopupWindowImg.setEventListeners()
 
 
 const createCard = (cardElement) => { 
-  const card = new Card (cardElement, elements, cardTemplateSelector, classPopupWindowImg, popupDeleteCard, api);
+  const card = new Card (cardElement, elements, cardTemplateSelector, classPopupWindowImg, popupDeleteCard, api, userInfo.getUserInfo());
   card.fillCard()
   return card
 }
@@ -73,13 +73,8 @@ const cardList = new Section({
 }, selector);
 
 
-api.getInitialCards()
-  .then((cards) => {
-    cardList.drawElement(cards);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+
+
 
 
 
@@ -96,9 +91,12 @@ const submitCallbackImg = (forInput) => {
       console.log(res);
       
      })
-     .catch(err => console.log(err));
+     .catch(err => console.log(err))
+     
 
 }
+
+
 
 
 
@@ -106,14 +104,16 @@ const formUserImg = new PopupWithForm(popupAddCard, submitCallbackImg);
 formUserImg.setEventListeners()
 
 
-api.getUserInfo()
-.then((info) => {
- console.log(info);
- userInfo.downloadUserInfo(info)
-})
-.catch(err => {
- console.log(err);
-})
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+// тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
+  .then(([userData, cards]) => {
+    userInfo.downloadUserInfo(userData);
+    cardList.drawElement(cards);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 
 
 const submitCallbackInfo = (getUserInfo) => {

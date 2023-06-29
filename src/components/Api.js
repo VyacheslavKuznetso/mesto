@@ -13,16 +13,7 @@ export class Api {
                 about: forInput.userRole
             })
         })
-         .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }
 
     postUserAvatar(forInput) {
@@ -33,52 +24,21 @@ export class Api {
                 avatar: forInput.linkAvatar
             })
         })
-         .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }
  
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: {
-                authorization: '68ba550e-5b32-4477-ae61-93c3a6a6c328'
-            }
+            headers: this._headers
         })
-         .then((res) => {
-            if(res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
-            headers: {
-                authorization: '68ba550e-5b32-4477-ae61-93c3a6a6c328'
-            }
+            headers: this._headers
         })
-         .then((res) => {
-            if(res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }
 
     addCard(values) {
@@ -90,16 +50,7 @@ export class Api {
                 link: values.link
             })
         })
-         .then((res) => {
-            if(res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }
 
 
@@ -108,17 +59,7 @@ export class Api {
             method: 'DELETE',
             headers: this._headers
         })
-         .then((res) => {
-            if(res.ok) {
-                return res.json()
-            }
-
-            return Promise.reject(`Ошибка: ${res.status}`)
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }
 
     likeCard(id) {
@@ -126,16 +67,7 @@ export class Api {
             method: 'PUT',
             headers: this._headers
         })
-         .then((res) => {
-            if(res.ok) {
-                return res.json()
-            }
-            return Promise(`Ошибка: ${res.status}`)
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
     }        
     
     deleteLikeCard(id) {
@@ -143,15 +75,13 @@ export class Api {
             method: 'DELETE',
             headers: this._headers
         })
-         .then((res) => {
-            if(res.ok) {
-                return res.json()
-            }
-            return Promise(`Ошибка: ${res.status}`)
-         })
-         .catch((error) => {
-            console.error('Произошла ошибка:', error);
-            return Promise.reject('Произошла ошибка при выполнении запроса');
-         });
+         .then(this._checkResponse)
+    }
+
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
     }
 }
