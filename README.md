@@ -1,5 +1,5 @@
 # Проект: Место
- * [mesto](https://VyacheslavKuznetso.github.io/mesto):
+ * [mesto](https://VyacheslavKuznetso.github.io/mesto/):
 Интерактивная веб-страница, позволяющая пользователю редактировать профиль.
 * [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0-1&t=jJktpJEhHqcdYBjW-0)
 * В данном проекте впервые используется: Разметка и верстка форм, взаимодействие с веб-страницей благодаря Document Object Model под воздействием JavaScript,  техника Desktop First.
