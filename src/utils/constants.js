@@ -26,5 +26,15 @@ export const popupAddCard = document.querySelector('.add-form');
 export const elements = document.querySelector('.elements');
 export const cardTemplateSelector = '#element';
 
-export const selector = '.elements'
+export const selector = '.elements';
+
+export const popupEditAvatar = document.querySelector('.edit-avatar');
+
+export const profileEditAvatar = document.querySelector('.profile__edit-avatar-button');
+
+export const popupDelete = document.querySelector('.delete')
+
+export const profileAvatar = document.querySelector('.profile__avatar')
+
+export const popupFormInputEditAvatar = document.querySelector('.popup__form-input_edit_avatar')
 

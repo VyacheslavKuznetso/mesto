@@ -14,13 +14,16 @@
     <main class="content">
         <section class="block-profile">
             <div class="profile">
-                <img class="profile__avatar" src="<%=require('./images/image-3.png')%>" alt="Жак-Ив Кусто" />
+                <div class="profile__coteiner-avatar">
+                    <img class="profile__avatar" alt="Жак-Ив Кусто" />
+                    <button class="profile__edit-avatar-button" type="button" aria-label="Редактировать аватар" id="profileEditAvatar"></button>
+                </div>
                 <div class="profile__info-block">
                     <div class="profile__data">
-                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <h1 class="profile__title"></h1>
                         <button class="profile__edit-button" type="button" aria-label="Редактировать" id="editUser"></button>
                     </div>
-                    <p class="profile__subtitle" id="specially">Исследователь океана</p>
+                    <p class="profile__subtitle" id="specially"></p>
                 </div>
             </div>
             <button class="block-profile__add-button" type="button" aria-label="Добывить" id="addContentButton"></button>
@@ -31,7 +34,10 @@
                     <img class="element__image" />
                     <div class="element__signature">
                         <h2 class="element__text-photo"></h2>
-                        <button class="element__like" type="button"></button>
+                        <div class="element__config-licke" >
+                            <button class="element__like" type="button"></button>
+                            <span class="element__number"></span>
+                        </div>
                     </div>
                     <button class="element__delete-button" type="button"></button>
                 </article>
@@ -43,7 +49,7 @@
     </footer>
     <div class="popup edit-form" id="editForm">
         <div class="popup__conteiner">
-            <button class="popup__close popup__close_edit-form" type="button" id="closeForm"></button>
+            <button class="popup__close popup__close_edit-form" type="button" id="editCloseForm"></button>
             <form class="popup__form" id="userInfo" name="userInfo">
                 <h2 class="popup__form-title">Редактировать профиль</h2>
                 <div class="popup__input-container">
@@ -60,9 +66,9 @@
     </div>
     <div class="popup add-form" id="addForm">
         <div class="popup__conteiner">
-            <button class="popup__close popup__close_add-form" type="button" id="addcloseForm"></button>
+            <button class="popup__close popup__close_add-form" type="button" id="addCloseForm"></button>
             <form class="popup__form" id="userImg" name="userImg">
-                <h2 class="popup__form-title">Новое место</h2>
+                <h2 class="popup__form-title ">Новое место</h2>
                 <div class="popup__input-container">
                     <input id="text_img" required minlength="2" maxlength="30" class="popup__form-input popup__form-input_text_img" placeholder="Название" type="text" name="commentImg" value="" />
                     <span id="text_img-error" class="popup__message"></span>
@@ -71,7 +77,7 @@
                     <input id="url" required class="popup__form-input popup__form-input_src_img" placeholder="Ссылка на картинку" type="url" name="linkImg" value="" />
                     <span id="url-error" class="popup__message"></span>
                 </div>
-                <button class="popup__form-submit-button" type="submit" value="Создать">Создать</button>
+                <button class="popup__form-submit-button " type="submit" value="Создать">Создать</button>
             </form>
         </div>
     </div>
@@ -80,6 +86,28 @@
             <button class="popup__close popup__close_window-img" type="button"></button>
             <img class="popup__picture"    />
             <h2 class="popup__text"></h2>
+        </div>
+    </div>
+    <div class="popup delete" id="delete">
+        <div class="popup__conteiner">
+            <button class="popup__close popup__close_add-form" type="button" id="deleteCloseForm"></button>
+            <form class="popup__form" id="deleteForm" name="deleteForm">
+                <h2 class="popup__form-title popup__form-title_margin-botton-38">Вы уверены?</h2>
+                <button class="popup__form-submit-button popup__form-submit-button_margin-top-0" type="submit" value="Да">Да</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup edit-avatar" id="editAvatar">
+        <div class="popup__conteiner">
+            <button class="popup__close popup__close_edit-avatar-form" type="button" id="editAvatarCloseForm"></button>
+            <form class="popup__form" id="editAvatarForm" name="editAvatarForm">
+                <h2 class="popup__form-title">Обновить аватар</h2>
+                <div class="popup__input-container">
+                    <input id="url_avatar" required class="popup__form-input popup__form-input_edit_avatar" placeholder="Ссылка на аватар" type="url" name="linkAvatar" value="" />
+                    <span id="url_avatar-error" class="popup__message"></span>
+                </div>
+                <button class="popup__form-submit-button" type="submit" value="Сохранить">Сохранить</button>
+            </form>
         </div>
     </div>
 </body>
