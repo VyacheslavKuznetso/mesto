@@ -41,8 +41,8 @@ const api = new Api({
 
 const deleteCardS = (element) => {
   api.deleteCard(element.querySelector('.element__image').id)
-   .catch((res) => {
-     console.log(res);
+   .then((res) => {
+    console.log(res);
     element.remove()
    })
    .catch(err => console.log(err))
@@ -88,7 +88,9 @@ const submitCallbackImg = (forInput) => {
 
     api.addCard(values)
      .then((res) => {
-      console.log(res);
+      const card = createCard(res);
+      const fullCard = card.fillCard();
+      cardList.addItem(fullCard);
       
      })
      .catch(err => console.log(err))
@@ -118,6 +120,11 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 const submitCallbackInfo = (getUserInfo) => {
   api.postUserInfo(getUserInfo)
+   .then((res) => {
+    console.log(res);
+    userInfo.setUserInfo(res)
+   })
+   .catch(err => console.log(err))
   
 }
 
@@ -128,6 +135,10 @@ formUserInfo.setEventListeners()
 
 const submitCallbackAvatar = (getUserInfo) => {
   api.postUserAvatar(getUserInfo)
+   .then((res) => {
+    profileAvatar.src = res.avatar
+   })
+   .catch(err => console.log(err))
 }
 
 

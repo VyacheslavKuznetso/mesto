@@ -32,10 +32,10 @@ export default class PopupWithForm extends Popup {
             } else {
                 this._submitButton.textContent = 'Создание...';
             }
-            
+        
+
             this.forInput = this._getInputValues();
             this._submitCallback(this.forInput); 
-        
             this.close()
             
         });

@@ -4,7 +4,7 @@ export default class Card {
     this._srcImage = cardElement.link;
     this._altImage = cardElement.name;
     this._likes = cardElement.likes
-    this._id = cardElement.owner._id;
+    this._ownerId = cardElement.owner._id;
     this._idImage = cardElement._id;
     this._elements = elements;
     this._templateSelector = templateSelector;
@@ -18,7 +18,7 @@ export default class Card {
     
     this._cardElement = this._elements.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
 
-    if(this._id !== this._userId) {
+    if(this._ownerId !== this._userId) {
       this._deleteButton = this._cardElement.querySelector('.element__delete-button');
 
       this._deleteButton.remove();
@@ -93,6 +93,9 @@ export default class Card {
     this._popupDeleteCard.open(this._element)
   }
   
+  removeCard() {
+    this._element.remove()
+  }
 
   _openBigPicture = () => {
     this._classPopupWindowImg.open(this._textPhoto, this._srcImage);

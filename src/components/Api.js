@@ -2,10 +2,10 @@ export class Api {
     constructor({baseUrl, headers}) {
         this._baseUrl = baseUrl;
         this._headers = headers;
-      }
-
+    }
+    
     postUserInfo(forInput) {
-        fetch(`${this._baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -17,7 +17,7 @@ export class Api {
     }
 
     postUserAvatar(forInput) {
-        fetch(`${this._baseUrl}/users/me/avatar`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -29,7 +29,7 @@ export class Api {
  
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers
+            headers: this._headers,
         })
          .then(this._checkResponse)
     }
