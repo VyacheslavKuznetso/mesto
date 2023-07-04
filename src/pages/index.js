@@ -39,16 +39,17 @@ const api = new Api({
 
 
 
-const deleteCardS = (element) => {
+const deleteCard = (element) => {
   api.deleteCard(element.querySelector('.element__image').id)
    .then((res) => {
     console.log(res);
     element.remove()
+    popupDeleteCard.close()
    })
-   .catch(err => console.log(err))
+   .catch(console.error)
 }
 
-const popupDeleteCard = new PopupDeleteCard(popupDelete, deleteCardS);
+const popupDeleteCard = new PopupDeleteCard(popupDelete, deleteCard);
 
 popupDeleteCard.setEventListeners()
 
@@ -60,15 +61,13 @@ classPopupWindowImg.setEventListeners()
 
 const createCard = (cardElement) => { 
   const card = new Card (cardElement, elements, cardTemplateSelector, classPopupWindowImg, popupDeleteCard, api, userInfo.getUserInfo());
-  card.fillCard()
-  return card
+  return card.generateCard()
 }
 
 const cardList = new Section({
   renderer: (cardElement) => {
     const card = createCard(cardElement);
-    const fullCard = card.fillCard();
-    cardList.addItem(fullCard);
+    cardList.addItem(card);
   }
 }, selector);
 
@@ -88,12 +87,16 @@ const submitCallbackImg = (forInput) => {
 
     api.addCard(values)
      .then((res) => {
+      formUserImg.renderLoading(res, 'Создание...')
       const card = createCard(res);
-      const fullCard = card.fillCard();
-      cardList.addItem(fullCard);
+      cardList.addItem(card);
+      formUserImg.close()
       
      })
-     .catch(err => console.log(err))
+     .catch(console.error)
+     .finally(() => {
+      formUserImg.renderLoading(false)
+     })
      
 
 }
@@ -107,14 +110,11 @@ formUserImg.setEventListeners()
 
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-// тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
   .then(([userData, cards]) => {
     userInfo.downloadUserInfo(userData);
     cardList.drawElement(cards);
   })
-  .catch(err => {
-    console.log(err);
-  });
+  .catch(console.error)
 
 
 
@@ -122,9 +122,14 @@ const submitCallbackInfo = (getUserInfo) => {
   api.postUserInfo(getUserInfo)
    .then((res) => {
     console.log(res);
-    userInfo.setUserInfo(res)
+    formUserInfo.renderLoading(res)
+    userInfo.downloadUserInfo(res);
+    formUserInfo.close()
    })
-   .catch(err => console.log(err))
+   .catch(console.error)
+   .finally(() => {
+    formUserInfo.renderLoading(false)
+   })
   
 }
 
@@ -136,9 +141,14 @@ formUserInfo.setEventListeners()
 const submitCallbackAvatar = (getUserInfo) => {
   api.postUserAvatar(getUserInfo)
    .then((res) => {
-    profileAvatar.src = res.avatar
+    formEditAvatar.renderLoading(res)
+    userInfo.downloadUserInfo(res)
+    formEditAvatar.close()
    })
-   .catch(err => console.log(err))
+   .catch(console.error)
+   .finally(() => {
+    formEditAvatar.renderLoading(false)
+   })
 }
 
 
@@ -153,7 +163,7 @@ const openProfileEdit = () => {
   const inform = userInfo.getUserInfo()
   popupFormInputTextName.value = inform.name;
   popupFormInputTextRole.value = inform.about;
-  formValidators['userInfo'].toggleButtonState();
+  formValidators['userInfo'].resetValidation();
   formUserInfo.open();
 }
 
@@ -161,14 +171,14 @@ const openProfileEdit = () => {
 
 
 const openProfileAdd = () => {
-  formValidators['userImg'].toggleButtonState()
+  formValidators['userImg'].resetValidation()
   formUserImg.open();
 }
 
 const openProfileAvatar = () => {
   const inform = userInfo.getUserInfo();
   popupFormInputEditAvatar.value = inform.avatar
-  formValidators['editAvatarForm'].toggleButtonState()
+  formValidators['editAvatarForm'].resetValidation()
   formEditAvatar.open();
   
 }

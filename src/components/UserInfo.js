@@ -6,8 +6,7 @@ export default class UserInfo  {
     }
 
     downloadUserInfo(info) {
-        this._nameElement.textContent = info.name;
-        this._infoElement.textContent = info.about;
+        this.setUserInfo(info)
         this._profileAvatar.src = info.avatar;
         this._userData = info._id
     }
@@ -22,7 +21,7 @@ export default class UserInfo  {
             name: this._nameElement.textContent,
             about: this._infoElement.textContent,
             avatar: this._profileAvatar.src,
-            userData:  this._userData
+            userId:  this._userData
         };
     }
 

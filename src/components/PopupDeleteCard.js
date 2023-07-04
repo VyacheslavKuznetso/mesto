@@ -13,7 +13,6 @@ export default class PopupDeleteCard extends Popup {
             evt.preventDefault();
 
             this._submitCallback(this._element)
-            this.close()
         })
     }
 
