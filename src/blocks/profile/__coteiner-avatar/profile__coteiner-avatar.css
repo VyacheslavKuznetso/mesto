@@ -1,6 +1,7 @@
 .profile__coteiner-avatar {
     height: 120px;
     width: 120px;
+    border-radius: 50%;
     position: relative;
     overflow: hidden;
 }
@@ -8,8 +9,8 @@
 
 .profile__coteiner-avatar:hover .profile__edit-avatar-button{
     position: absolute;
-    top: 47px;
-    left: 47px;
+    top: 0;
+    left: 0;
     z-index: 2;
 }
 
