@@ -1,5 +1,5 @@
 import './index.css'
-import  Card  from '../components/Card.js'
+import Card from '../components/Card.js'
 import { FormValidator } from '../components/FormValidator.js'
 import { validationConfigs, profilePopup, popupWindowImg, popupFormInputTextName, popupFormInputTextRole, profileTitle, profileSubtitle, popupAddCard, elements, cardTemplateSelector, selector, profileEditButton, profileAddButton, popupEditAvatar, profileEditAvatar, popupDelete, profileAvatar, popupFormInputEditAvatar } from '../utils/constants.js'
 import Section from '../components/Section.js'
@@ -31,7 +31,7 @@ enableValidation(validationConfigs);
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-69',
   headers: {
-    authorization: '68ba550e-5b32-4477-ae61-93c3a6a6c328', 
+    authorization: '68ba550e-5b32-4477-ae61-93c3a6a6c328',
     'Content-Type': 'application/json'
   }
 });
@@ -41,12 +41,12 @@ const api = new Api({
 
 const deleteCard = (element) => {
   api.deleteCard(element.querySelector('.element__image').id)
-   .then((res) => {
-    console.log(res);
-    element.remove()
-    popupDeleteCard.close()
-   })
-   .catch(console.error)
+    .then((res) => {
+      console.log(res);
+      element.remove()
+      popupDeleteCard.close()
+    })
+    .catch(console.error)
 }
 
 const popupDeleteCard = new PopupDeleteCard(popupDelete, deleteCard);
@@ -59,8 +59,8 @@ classPopupWindowImg.setEventListeners()
 
 
 
-const createCard = (cardElement) => { 
-  const card = new Card (cardElement, elements, cardTemplateSelector, classPopupWindowImg, popupDeleteCard, api, userInfo.getUserInfo());
+const createCard = (cardElement) => {
+  const card = new Card(cardElement, elements, cardTemplateSelector, classPopupWindowImg, popupDeleteCard, api, userInfo.getUserInfo());
   return card.generateCard()
 }
 
@@ -78,26 +78,26 @@ const cardList = new Section({
 
 
 
-const submitCallbackImg = (forInput) => { 
+const submitCallbackImg = (forInput) => {
 
-    const values = {
-      name: forInput.commentImg,
-      link: forInput.linkImg
-    }
+  const values = {
+    name: forInput.commentImg,
+    link: forInput.linkImg
+  }
 
-    api.addCard(values)
-     .then((res) => {
-      formUserImg.renderLoading(res, 'Создание...')
+  formUserImg.renderLoading(true, 'Создание...')
+  api.addCard(values)
+    .then((res) => {
       const card = createCard(res);
       cardList.addItem(card);
       formUserImg.close()
-      
-     })
-     .catch(console.error)
-     .finally(() => {
+
+    })
+    .catch(console.error)
+    .finally(() => {
       formUserImg.renderLoading(false)
-     })
-     
+    })
+
 
 }
 
@@ -119,18 +119,17 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 
 const submitCallbackInfo = (getUserInfo) => {
+  formUserInfo.renderLoading(true)
   api.postUserInfo(getUserInfo)
-   .then((res) => {
-    console.log(res);
-    formUserInfo.renderLoading(res)
-    userInfo.downloadUserInfo(res);
-    formUserInfo.close()
-   })
-   .catch(console.error)
-   .finally(() => {
-    formUserInfo.renderLoading(false)
-   })
-  
+    .then((res) => {
+      userInfo.downloadUserInfo(res);
+      formUserInfo.close()
+    })
+    .catch(console.error)
+    .finally(() => {
+      formUserInfo.renderLoading(false)
+    })
+
 }
 
 const formUserInfo = new PopupWithForm(profilePopup, submitCallbackInfo);
@@ -139,16 +138,16 @@ formUserInfo.setEventListeners()
 
 
 const submitCallbackAvatar = (getUserInfo) => {
+  formEditAvatar.renderLoading(true)
   api.postUserAvatar(getUserInfo)
-   .then((res) => {
-    formEditAvatar.renderLoading(res)
-    userInfo.downloadUserInfo(res)
-    formEditAvatar.close()
-   })
-   .catch(console.error)
-   .finally(() => {
-    formEditAvatar.renderLoading(false)
-   })
+    .then((res) => {
+      userInfo.downloadUserInfo(res)
+      formEditAvatar.close()
+    })
+    .catch(console.error)
+    .finally(() => {
+      formEditAvatar.renderLoading(false)
+    })
 }
 
 
@@ -156,7 +155,7 @@ const formEditAvatar = new PopupWithForm(popupEditAvatar, submitCallbackAvatar)
 formEditAvatar.setEventListeners()
 
 
-const userInfo = new UserInfo({ profileTitle, profileSubtitle, profileAvatar }) 
+const userInfo = new UserInfo({ profileTitle, profileSubtitle, profileAvatar })
 
 
 const openProfileEdit = () => {
@@ -180,7 +179,7 @@ const openProfileAvatar = () => {
   popupFormInputEditAvatar.value = inform.avatar
   formValidators['editAvatarForm'].resetValidation()
   formEditAvatar.open();
-  
+
 }
 
 profileEditButton.addEventListener('click', openProfileEdit);

@@ -29,6 +29,7 @@ export default class Card {
     this._likeButton = this._element.querySelector('.element__like');
     this._numberLikes = this._element.querySelector('.element__number');
     this._imageElement = this._element.querySelector('.element__image');
+    this._elementTextPhoto = this._element.querySelector('.element__text-photo')
 
     if(this._ownerId !== this._userId) {
 
@@ -41,8 +42,8 @@ export default class Card {
 
     this._imageElement.src = this._srcImage;
     this._imageElement.alt = this._altImage;
-    this._element.querySelector('.element__text-photo').textContent = this._textPhoto;
-    this._element.querySelector('.element__number').textContent = this._likes.length;
+    this._elementTextPhoto.textContent = this._textPhoto;
+    this._numberLikes.textContent = this._likes.length;
     this._imageElement.id = this._idImage;
 
     this._addEventListeners(this._element);
@@ -73,14 +74,14 @@ export default class Card {
     this._isLiked = this._likeButton.classList.contains("element__like_filled");
 
     if (this._isLiked) {
-      this._api.deleteLikeCard(this._element.querySelector('.element__image').id)
+      this._api.deleteLikeCard(this._imageElement.id)
         .then((res) => {
           this._numberLikes.textContent = res.likes.length;
           this._likeButton.classList.remove("element__like_filled");
         })
         .catch(err => console.log(err));
     } else {
-      this._api.likeCard(this._element.querySelector('.element__image').id)
+      this._api.likeCard(this._imageElement.id)
         .then((res) => {
           this._numberLikes.textContent = res.likes.length;
           this._likeButton.classList.add("element__like_filled");
